@@ -1,0 +1,7 @@
+The system shall store the current state of the game when "save game" is selected.
+
+The system shall resume the game from its stored state when "load game" is selected.
+
+The system shall pause the game while the Options Menu is displayed.
+
+The system shall prevent the player from passing through a wall.
