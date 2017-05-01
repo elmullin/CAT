@@ -21,8 +21,8 @@ public class Button {
     this.highlightColor[2] = 51;
     this.rectOver = false;
     this.rectPressed = false;
-    this.imageName = "thumbs-up.png";
-    this.imageSmallName = "thumbs-up-small.png";
+    this.imageName = "assets/thumbs-up.png";
+    this.imageSmallName = "assets/thumbs-up-small.png";
     this.image = loadImage(imageName);
     this.imageSmall = loadImage(imageSmallName);
   }
