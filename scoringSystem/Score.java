@@ -1,8 +1,5 @@
 package scoringSystem;
-/**
- * @author Dylan Kohler
- * @version 1.0
- * 
+/*
  * A class that keeps track of the number of objects broken, the amount of time
  * taken in the level, and the number of cats corralled and converts them
  * to dollar values. 
