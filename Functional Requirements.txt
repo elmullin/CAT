@@ -1,1 +1,0 @@
-Erick Harris4-10-17Functional RequirementsCAT: Corral and Transfer1. The system shall allow a user to create a profile for the game.2. The system shall keep track of a user’s aggregate score.3. The system shall allow a user to play with friends.4. The system shall allow a user to upgrade their power-ups.5. The system shall contain levels with time constraints.

@@ -1,5 +1,0 @@
-As a casual gamer, I want to play levels that are brief so that I have time for other activities.
-
-As a hardcore gamer, I want to play a game that challenges me so that I'm not bored.
-
-As a player, I want to have highly visible game objects so that I can clearly identify my goals.
