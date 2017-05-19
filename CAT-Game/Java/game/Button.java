@@ -1,14 +1,24 @@
-package game;
+/* Dynamic Button
+   Created by Erick Harris
+   CPE 307
+   CAT - Corral and Transfer
 
-import processing.core.*;
+   Updated: 5/18/17
+*/
 
-public class Button extends PApplet{
-  public int positionX, positionY;
-  public int recHeight, recWidth;
-  public int[] backgroundColor, highlightColor;
-  public boolean rectOver, rectPressed;
-  public String imageName, imageSmallName;
-  public PImage image, imageSmall;
+public class Button {
+  public int positionX;
+  public int positionY;
+  public int recHeight;
+  public int recWidth;
+  public int[] backgroundColor;
+  public int[] highlightColor;
+  public boolean rectOver;
+  public boolean rectPressed;
+  public String imageName;
+  public String imageSmallName;
+  public PImage image;
+  public PImage imageSmall;
   
   public Button() {
     this.positionX = 640/2-100;
@@ -25,31 +35,31 @@ public class Button extends PApplet{
     this.highlightColor[2] = 51;
     this.rectOver = false;
     this.rectPressed = false;
-    this.imageName = "assets/thumbs-up.png";
-    this.imageSmallName = "assets/thumbs-up-small.png";
+    this.imageName = "thumbs-up.png";
+    this.imageSmallName = "thumbs-up-small.png";
     this.image = loadImage(imageName);
     this.imageSmall = loadImage(imageSmallName);
   }
   
-  public Button(int posX, int posY, int h, int w, int[] backColor, int[] highColor, boolean recOver, boolean recPrss, String imgName, String imgSmallName) {
-    this.positionX = posX;
-    this.positionY = posY;
-    this.recHeight = h;
-    this.recWidth = w;
+  public Button(Button button) {
+    this.positionX = button.positionX;
+    this.positionY = button.positionY;
+    this.recHeight = button.recHeight;
+    this.recWidth = button.recWidth;
     this.backgroundColor = new int[3];
-    this.backgroundColor[0] = backColor[0];
-    this.backgroundColor[1] = backColor[1];
-    this.backgroundColor[2] = backColor[2];
+    this.backgroundColor[0] = button.backgroundColor[0];
+    this.backgroundColor[1] = button.backgroundColor[1];
+    this.backgroundColor[2] = button.backgroundColor[2];
     this.highlightColor = new int[3];
-    this.highlightColor[0] = highColor[0];
-    this.highlightColor[1] = highColor[1];
-    this.highlightColor[2] = highColor[2];
-    this.rectOver = recOver;
-    this.rectPressed = recPrss;
-    this.imageName = imgName;
-    this.imageSmallName = imgSmallName;
-    this.image = loadImage(this.imageName);
-    this.imageSmall = loadImage(this.imageSmallName);
+    this.highlightColor[0] = button.highlightColor[0];
+    this.highlightColor[1] = button.highighlightColorhColor[1];
+    this.highlightColor[2] = button.highlightColor[2];
+    this.rectOver = button.rectOver;
+    this.rectPressed = button.rectPressed;
+    this.imageName = button.imageName;
+    this.imageSmallName = button.imageSmallName;
+    this.image = loadImage(button.image);
+    this.imageSmall = loadImage(button.imageSmall);
   }
   
   public void drawButton() {  
@@ -77,11 +87,7 @@ public class Button extends PApplet{
   }
   
   public boolean overRect(int x, int y, int width, int height) {
-    if (mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
-      return true;
-    } else {
-      return false;
-    }
+    return mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
   }
   
   public void roundrect(int x, int y, int w, int h, int r) {
@@ -95,10 +101,10 @@ public class Button extends PApplet{
      hr = r/2;
 
      rect(x, y, w, h);
-     arc(x, y, r, r, radians(180.0f), radians(270.0f));
-     arc(ax, y, r,r, radians(270.0f), radians(360.0f));
-     arc(x, ay, r,r, radians(90.0f), radians(180.0f));
-     arc(ax, ay, r,r, radians(0.0f), radians(90.0f));
+     arc(x, y, r, r, radians(180.0), radians(270.0));
+     arc(ax, y, r,r, radians(270.0), radians(360.0));
+     arc(x, ay, r,r, radians(90.0), radians(180.0));
+     arc(ax, ay, r,r, radians(0.0), radians(90.0));
      rect(x, y-hr, w, hr);
      rect(x-hr, y, hr, h);
      rect(x, y+h, w, hr);
