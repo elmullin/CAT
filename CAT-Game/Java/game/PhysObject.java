@@ -16,7 +16,7 @@ public abstract class PhysObject extends PApplet{
     
     /* the collision radius */
     private float radius;
-    
+
     /**
      * Constructor. Creates a new object at the given location.
      */
@@ -88,6 +88,6 @@ public abstract class PhysObject extends PApplet{
      * Sets the angle at which the object moves.
      */
     public void setAngle(float amt){
-        //TODO
+       velocity.rotate((-1 * velocity.heading()) + amt);
     }
 }
