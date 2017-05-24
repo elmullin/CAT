@@ -2,7 +2,7 @@ package game;
 
 import processing.core.*;
 
-public abstract class PhysObject extends PApplet{
+public abstract class PhysObject extends Actor {
     
     // points from 0,0 to the object's location
     private PVector position;

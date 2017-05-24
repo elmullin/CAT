@@ -1,4 +1,4 @@
-public abstract class PhysObject{
+public abstract class PhysObject extends Actor{
     
     // points from 0,0 to the object's location
     private PVector position;
