@@ -1,17 +1,15 @@
 public abstract class PhysObject{
     
-    /* points from 0,0 to the object's location */
+    // points from 0,0 to the object's location
     private PVector position;
     
-    /**
-     * A vector describing the object's movement:
-     *     - the direction is the direction the object is facing
-     *     - the magnitude is the speed the object is moving
-     */
+    // A vector describing the object's movement
     private PVector velocity;
     
-    /* the collision radius */
+    // the collision radius
     private float radius;
+    
+    boolean immovable;
     
     /**
      * Constructor. Creates a new object at the given location.
@@ -19,6 +17,7 @@ public abstract class PhysObject{
     public PhysObject(int x, int y){
         position = new PVector(x, y);
         velocity = new PVector(0, 0);
+        immovable = true;
     }
     
     /**
@@ -31,11 +30,22 @@ public abstract class PhysObject{
     
     /**
      * What this object should do on collision with another object.
-     * By default, stops.
+     * Default behavior is wall-like.
      */
     public void collision(PhysObject other){
-        if(collidesWith(other)){
-            //TODO set to where radii meet along the velocity vector
+		
+		float distance = position.dist(other.position);
+        float boundary = radius + other.radius;
+        
+        if (distance < boundary) {
+            if(other.immovable){
+                position.add(PVector.sub(position, other.position).normalize().mult(boundary - distance));
+            }
+            else {
+                PVector adjust = PVector.sub(position, other.position).normalize().mult((boundary - distance) / 2.0);
+                position.add(adjust);
+                other.position.add(adjust);
+            }
         }
     }
     
@@ -51,7 +61,7 @@ public abstract class PhysObject{
      * Moves the object in the direction of the velocity.
      */
     public void move(){
-        // TODO
+        position.add(velocity);
     }
     
     /**
@@ -84,6 +94,6 @@ public abstract class PhysObject{
      * Sets the angle at which the object moves.
      */
     public void setAngle(float amt){
-        //TODO
+        velocity.rotate((-1 * velocity.heading()) + amt);
     }
 }
