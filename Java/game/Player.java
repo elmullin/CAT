@@ -17,7 +17,7 @@ public class Player extends PhysObject {
     */
    private int[] keysPressed;
    // private PImage img;
-   private double imgAngle;
+   // private double imgAngle;
 
    /**
     * Constructor. Creates a new object at the given location.
@@ -78,6 +78,7 @@ public class Player extends PhysObject {
          tempAngle = -1 * tempAngle;
       }
 
+      setAngle(tempAngle);
    }
 
    // -------------------------------------------------------------------------
