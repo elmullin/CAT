@@ -73,7 +73,8 @@ public class Player extends PhysObject {
          tempAngle += HALF_PI;
          tempAngle = -1 * tempAngle;
       }
-
+      
+      setAngle(tempAngle);
    }
 
    // -------------------------------------------------------------------------
