@@ -5,13 +5,15 @@ public void settings(){
 }
 
 public void setup(){
-    //scene setup
+    // -- load images --
+    PImage catgif = loadImage("assets/cat.gif");
+  
+    //world setup
     surface.setResizable(false);
     world = new World(new Background("bg.png"));
     
-    PhysObject cat = new TabbyCat(50, 50);
-    
-    world.addActor(cat);
+    // actor setup
+    world.addActor(new TabbyCat(catgif, 50, 50));
 }
 
 public void draw(){

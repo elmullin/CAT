@@ -11,14 +11,21 @@ public abstract class PhysObject extends Actor {
     
     boolean moveable;
     
-    public abstract void display();
-    
     /**
      * Constructor. Creates a new object at the given location.
      */
     public PhysObject(boolean isMoveable, int x, int y){
+        super(x, y);
         moveable = isMoveable;
-        position = new PVector(x, y);
+        velocity = new PVector(0, 0);
+    }
+    
+    /**
+     * Constructor. Creates a new object with an image at the given location.
+     */
+    public PhysObject(PImage image, boolean isMoveable, int x, int y){
+        super(image, x, y);
+        moveable = isMoveable;
         velocity = new PVector(0, 0);
     }
     
@@ -28,6 +35,15 @@ public abstract class PhysObject extends Actor {
     public PhysObject(boolean isMoveable, int posX, int posY, int velX, int velY){
         moveable = isMoveable;
         position = new PVector(posX, posY);
+        velocity = new PVector(velX, velY);
+    }
+    
+     /**
+     * Constructor. Creates a new object with an image at the given location with the given velocity.
+     */
+    public PhysObject(PImage image, boolean isMoveable, int posX, int posY, int velX, int velY){
+        super(image, posX, posY);
+        moveable = isMoveable;
         velocity = new PVector(velX, velY);
     }
     
