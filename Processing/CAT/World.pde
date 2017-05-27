@@ -8,7 +8,7 @@ public class World extends processing.core.PApplet {
     Score score = new Score();
   
     // array to hold actors
-    ArrayList<Actor> actors = new ArrayList<Actor>();
+    ArrayList<Actor> actors = new ArrayList<>();
     
     /*// default world size if not given
     static final int defaultWidth = 620;
@@ -70,13 +70,13 @@ public class World extends processing.core.PApplet {
     }
     
     // return an array of all actors
-    public ArrayList<Actor> getActors() {
+    public List<Actor> getActors() {
       return actors;
     }
     
     // return an array of actors matching a given class
-    public <T extends Actor> ArrayList<Actor> getActors(Class<T> subclass) {
-      ArrayList<Actor> filtered = new ArrayList<Actor>();
+    public <T extends Actor> List<Actor> getActors(Class<T> subclass) {
+      ArrayList<Actor> filtered = new ArrayList<>();
       for (Actor actor : actors)
         if (actor.getClass().equals(subclass))
           filtered.add(actor);
