@@ -9,7 +9,7 @@ public class Actor extends processing.core.PApplet {
     private int y = 0;
     
     public Actor() {
-      
+      //Do nothing default constructor 
     }
     
     public Actor(String image) {
