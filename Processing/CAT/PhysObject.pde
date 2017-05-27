@@ -1,29 +1,32 @@
-public abstract class PhysObject extends Actor{
+public abstract class PhysObject{
     
     // points from 0,0 to the object's location
-    private PVector position;
+    protected PVector position;
     
     // A vector describing the object's movement
-    private PVector velocity;
+    protected PVector velocity;
     
     // the collision radius
-    private float radius;
+    protected float radius;
     
-    boolean immovable;
+    boolean moveable;
+    
+    abstract void display();
     
     /**
      * Constructor. Creates a new object at the given location.
      */
-    public PhysObject(int x, int y){
+    public PhysObject(boolean isMoveable, int x, int y){
+        moveable = isMoveable;
         position = new PVector(x, y);
         velocity = new PVector(0, 0);
-        immovable = true;
     }
     
     /**
      * Constructor. Creates a new object at the given location with the given velocity.
      */
-    public PhysObject(int posX, int posY, int velX, int velY){
+    public PhysObject(boolean isMoveable, int posX, int posY, int velX, int velY){
+        moveable = isMoveable;
         position = new PVector(posX, posY);
         velocity = new PVector(velX, velY);
     }
@@ -38,13 +41,13 @@ public abstract class PhysObject extends Actor{
         float boundary = radius + other.radius;
         
         if (distance < boundary) {
-            if(other.immovable){
-                position.add(PVector.sub(position, other.position).normalize().mult(boundary - distance));
-            }
-            else {
+            if(other.moveable){
                 PVector adjust = PVector.sub(position, other.position).normalize().mult((boundary - distance) / 2.0);
                 position.add(adjust);
                 other.position.add(adjust);
+            }
+            else {
+                position.add(PVector.sub(position, other.position).normalize().mult(boundary - distance));
             }
         }
     }

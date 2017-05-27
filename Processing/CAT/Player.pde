@@ -19,7 +19,7 @@ public class Player extends PhysObject {
     * Constructor. Creates a new object at the given location.
     */
    public Player(int posX, int posY) {
-      super(posX, posY);
+      super(true, posX, posY);
       keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D
       // img = 
       imgAngle = 0;
@@ -79,7 +79,7 @@ public class Player extends PhysObject {
 
    // -------------------------------------------------------------------------
 
-   public void draw() {
+   public void display() {
       // imageMode(CENTER):
 
       // calculate new image angle based on mouse location
