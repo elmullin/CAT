@@ -11,7 +11,7 @@ public abstract class PhysObject extends Actor {
     
     boolean moveable;
     
-    abstract void display();
+    public abstract void display();
     
     /**
      * Constructor. Creates a new object at the given location.

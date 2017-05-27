@@ -1,18 +1,16 @@
-private Background bg;
-private PhysObject cat;
+private World world;
 
 public void settings(){
-    size(800, 600);
+    world.applySettings();
 }
 
 public void setup(){
     //scene setup
     surface.setResizable(false);
-    bg = new Background("bg.png");
-    cat = new TabbyCat(50, 50);
+    world = new World(new Background("bg.png"), 800, 600);
+    world.addActor(new TabbyCat(50, 50));
 }
 
 public void draw(){
-    bg.display();
-    cat.display();
+    world.display();
 }
