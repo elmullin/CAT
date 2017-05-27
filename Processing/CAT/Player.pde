@@ -74,7 +74,7 @@ public class Player extends PhysObject {
    private void calculateImageAngle() {
       PVector mouseVector = new PVector(mouseX, mouseY);
       PVector base = new PVector(1, 0);
-      rotate(angleBetween(mouseVector, base));
+      rotate(PVector.angleBetween(mouseVector, base));
    }
 
    // -------------------------------------------------------------------------
