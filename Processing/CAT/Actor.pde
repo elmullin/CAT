@@ -8,12 +8,6 @@ public class Actor extends processing.core.PApplet {
     private int x = 0;
     private int y = 0;
     
-    @Override
-    public void draw() {
-      if (image != null)
-        image(image, x, y);
-    }
-    
     public Actor() {
       
     }
@@ -29,6 +23,12 @@ public class Actor extends processing.core.PApplet {
     public Actor(String image, int x, int y) {
       setLocation(x, y);
       setImage(image);
+    }
+    
+    @Override
+    public void draw() {
+      if (image != null)
+        image(image, x, y);
     }
     
     void setLocation(int x, int y) {
