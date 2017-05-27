@@ -1,4 +1,4 @@
-package Java.game;
+package game;
 
 import processing.core.PImage;
 
