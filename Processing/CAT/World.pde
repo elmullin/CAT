@@ -65,7 +65,7 @@ public class World extends processing.core.PApplet {
     
     // remove an actor from the list of actors belonging to this world
     public void removeActor(Actor actor) {
-      actor.world = null;
+      actor.setWorld(null);
       actors.remove(actor);
     }
     
