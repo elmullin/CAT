@@ -12,8 +12,7 @@ public class Player extends PhysObject {
     * Fields
     */
    private int[] keysPressed;
-   // private PImage img;
-   private double imgAngle;
+   PImage sprite;
 
    /**
     * Constructor. Creates a new object at the given location.
@@ -21,8 +20,7 @@ public class Player extends PhysObject {
    public Player(int posX, int posY) {
       super(true, posX, posY);
       keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D
-      // img = 
-      imgAngle = 0;
+      sprite = loadImage("assets/PlayerPlaceHolder.png");
    }
 
    // -------------------------------------------------------------------------
@@ -62,10 +60,6 @@ public class Player extends PhysObject {
 
    // -------------------------------------------------------------------------
 
-   private void calculateImgAngle() {
-      //TODO
-   }
-
    private void calculateVelocityAngle() {
       float tempAngle = atan((keysPressed[1] + keysPressed[3])/(keysPressed[0] + keysPressed[2]));
       
@@ -77,14 +71,19 @@ public class Player extends PhysObject {
       setAngle(tempAngle);
    }
 
+   private void calculateImageAngle() {
+      PVector mouseVector = new PVector(mouseX, mouseY);
+      PVector base = new PVector(1, 0);
+      rotate(angleBetween(mouseVector, base));
+   }
+
    // -------------------------------------------------------------------------
 
    public void display() {
-      // imageMode(CENTER):
-
-      // calculate new image angle based on mouse location
-      // calculateImgAngle();
-
       calculateVelocityAngle();
+      calculateImageAngle();
+
+      move();
+      resetMatrix();
    }
 }
