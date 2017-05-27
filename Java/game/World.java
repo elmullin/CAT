@@ -5,18 +5,22 @@ import java.util.List;
 
 public class World extends processing.core.PApplet {
 
+import processing.core.PImage;
+
+public class World extends processing.core.PApplet {
+  
     // -- variables --
   
     // array to hold actors
     ArrayList<Actor> actors = new ArrayList<Actor>();
     
-    // default world size if not given
+    /*// default world size if not given
     static final int defaultWidth = 620;
     static final int defaultHeight = 480;
     
     // non-default world dimensions
     int tempWidth = defaultWidth;
-    int tempHeight = defaultHeight;
+    int tempHeight = defaultHeight;*/
     
     // background image
     Background background;
@@ -29,10 +33,10 @@ public class World extends processing.core.PApplet {
     }
     
     // make world with dimensions
-    public World(int width, int height) {
+    /*public World(int width, int height) {
       tempWidth = width;
       tempHeight = height;
-    }
+    }*/
     
     // make world with background and default dimensions
     public World(Background background) {
@@ -40,12 +44,12 @@ public class World extends processing.core.PApplet {
     }
     
     // make world with background and given dimnnsions
-    public World(Background background, int width, int height) {
+    /*public World(Background background, int width, int height) {
       this.background = background;
       
       tempWidth = width;
       tempHeight = height;
-    }
+    }*/
     
     // -- methods --
     
@@ -59,7 +63,7 @@ public class World extends processing.core.PApplet {
     
     // add an actor to the list of updating actors
     public void addActor(Actor actor) {
-      actor.world = this;
+      actor.setWorld(this);
       actors.add(actor);
     }
     
@@ -83,8 +87,8 @@ public class World extends processing.core.PApplet {
       return filtered;
     }
     
-    // resizes world and changes background
+    /*// resizes world and changes background
     public void applySettings() {
       size(tempWidth, tempHeight);
-    }
+    }*/
 }

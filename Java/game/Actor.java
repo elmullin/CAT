@@ -4,6 +4,10 @@ import processing.core.PImage;
 
 public class Actor extends processing.core.PApplet {
   
+  
+    // logger
+    //private static final Logger LOGGER = Logger.getLogger(ClassName.class.getName());
+  
     // -- variables --
   
     // world actor belongs to
@@ -74,12 +78,13 @@ public class Actor extends processing.core.PApplet {
     }
     
     // returns world of this actor, cast to the subclass passed in - will return null if the class does not cast correctly
-    public <T extends World> T getWorld(Class<T> subclass) {
-      try {
-          return subclass.cast(world);
-      } catch(ClassCastException e) {
-          return null;
-      }
+    /*public <T extends World> T getWorld(Class<T> subclass) {
+      return subclass.cast(world);
+    }*/
+    
+    // sets the world this actor is in
+    public void setWorld(World world) {
+      this.world = world;
     }
     
     // removes actor from world

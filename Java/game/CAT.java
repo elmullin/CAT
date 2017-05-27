@@ -7,14 +7,17 @@ public class CAT extends PApplet{
 private World world;
 
 public void settings(){
-    world.applySettings();
+    size(800, 600);
 }
 
 public void setup(){
     //scene setup
     surface.setResizable(false);
-    world = new World(new Background("bg.png"), 800, 600);
-    world.addActor(new TabbyCat(50, 50));
+    world = new World(new Background("bg.png"));
+    
+    PhysObject cat = new TabbyCat(50, 50);
+    
+    world.addActor(cat);
 }
 
 public void draw(){
