@@ -2,7 +2,7 @@ public class BreakableObject extends PhysObject {
    /*
     * Fields
     */
-   int value;
+   private int value;
 
    // -------------------------------------------------------------------------
 
@@ -13,7 +13,19 @@ public class BreakableObject extends PhysObject {
 
    // -------------------------------------------------------------------------
 
+
    public void display() {
-      ArrayList<Actor> actors = 
+      //TODO: set the image
+   }
+
+
+// ----------------------------------------------------------------------------
+
+   /*
+    * Called by a player or cat if they collide with this object
+    */
+   public void breakObject() {
+      world.score.incrementObejctsBroken(value);
+      world.remove(this);
    }
 }
