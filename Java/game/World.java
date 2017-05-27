@@ -4,23 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class World extends processing.core.PApplet {
-
-import processing.core.PImage;
-
-public class World extends processing.core.PApplet {
   
     // -- variables --
   
     // array to hold actors
     ArrayList<Actor> actors = new ArrayList<Actor>();
-    
-    /*// default world size if not given
-    static final int defaultWidth = 620;
-    static final int defaultHeight = 480;
-    
-    // non-default world dimensions
-    int tempWidth = defaultWidth;
-    int tempHeight = defaultHeight;*/
     
     // background image
     Background background;
@@ -32,24 +20,10 @@ public class World extends processing.core.PApplet {
       // default constructor
     }
     
-    // make world with dimensions
-    /*public World(int width, int height) {
-      tempWidth = width;
-      tempHeight = height;
-    }*/
-    
     // make world with background and default dimensions
     public World(Background background) {
       this.background = background;
     }
-    
-    // make world with background and given dimnnsions
-    /*public World(Background background, int width, int height) {
-      this.background = background;
-      
-      tempWidth = width;
-      tempHeight = height;
-    }*/
     
     // -- methods --
     
@@ -86,9 +60,4 @@ public class World extends processing.core.PApplet {
           filtered.add(actor);
       return filtered;
     }
-    
-    /*// resizes world and changes background
-    public void applySettings() {
-      size(tempWidth, tempHeight);
-    }*/
 }
