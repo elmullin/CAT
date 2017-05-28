@@ -12,9 +12,8 @@ public class Actor extends processing.core.PApplet {
     // sprite of actor
     private PImage image;
     
-    // pixel coordinates of actor
-    private int x = 0;
-    private int y = 0;
+    // points from 0,0 to the object's location
+    protected PVector position;
     
     // -- constructors --
     
@@ -24,19 +23,19 @@ public class Actor extends processing.core.PApplet {
     }
     
     // make actor with image
-    public Actor(String image) {
+    public Actor(PImage image) {
       setImage(image);
     }
     
     // make actor in position
     public Actor(int x, int y) {
-      setLocation(x, y);
+      position = new PVector(x, y);
     }
     
     // make actor in position with image
-    public Actor(String image, int x, int y) {
-      setLocation(x, y);
-      setImage(image);
+    public Actor(PImage image, int x, int y) {
+      position = new PVector(x, y);
+      this.image = image;
     }
     
     // -- methods --
@@ -44,18 +43,21 @@ public class Actor extends processing.core.PApplet {
     // display actor on screen
     public void display() {
       if (image != null)
-        image(image, x, y);
+        image(image, (int) position.x, (int) position.y);
+        //image(image, 0, 0);
+        resetMatrix();
+        //System.out.println(image.toString());
     }
     
     // change location of actor
     void setLocation(int x, int y) {
-      this.x = x;
-      this.y = y;
+      position.x = x;
+      position.y = y;
     }
     
     // change image of actor
-    void setImage(String image) {
-      this.image = loadImage(image);
+    void setImage(PImage image) {
+      this.image = image;
     }
     
     // change image of actor to given size
@@ -80,17 +82,18 @@ public class Actor extends processing.core.PApplet {
     
     // removes actor from world
     public void remove() {
+        world = null;
         getWorld().removeActor(this);
     }
     
     // returns x-value of actor
-    int getX() {
-      return x;
+    float getX() {
+      return position.x;
     }
     
     // returns y-value of actor
-    int getY() {
-      return y;
+    float getY() {
+      return position.y;
     }
       
     // returns width of actor
