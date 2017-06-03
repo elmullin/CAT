@@ -15,15 +15,42 @@ public abstract class PhysObject extends Actor{
     /* CONSTRUCTORS */
     
     /**
-     * Constructor. Creates a new object at the given location with the given velocity.
+     * Full constructor.
      */
-    public PhysObject(PImage image, float posX, float posY, float velX, float velY, float radius, boolean isMoveable){
-		super(image, posX, posY);
+    public PhysObject(PImage image, float posX, float posY, float velX, float velY, 
+    float collisionRadius, boolean isMoveable){
+        super(image, posX, posY);
+        radius = collisionRadius;
         moveable = isMoveable;
         position = new PVector(posX, posY);
         velocity = new PVector(velX, velY);
     }
     
+    /**
+     * Imageless constructor.
+     */
+    public PhysObject(float posX, float posY, float velX, float velY, 
+    float collisionRadius, boolean isMoveable){
+        super(posX, posY);
+        radius = collisionRadius;
+        moveable = isMoveable;
+        position = new PVector(posX, posY);
+        velocity = new PVector(velX, velY);
+    }
+    
+    /**
+     * No-velocity constructor.
+     */
+    public PhysObject(PImage image, float posX, float posY, float collisionRadius, boolean isMoveable){
+        this(image, posX, posY, 0, 0, collisionRadius, isMoveable);
+    }
+    
+    /**
+     * No-image constructor.
+     */
+    public PhysObject(float posX, float posY, float collisionRadius, boolean isMoveable){
+        this(posX, posY, 0, 0, collisionRadius, isMoveable);
+    }
     
     /* MOVEMENT */
     
@@ -74,6 +101,17 @@ public abstract class PhysObject extends Actor{
     
     /* COLLISIONS */
     
+    public void collide(List<Object> list){
+        for(Object a: list){
+            if(a instanceof PhysObject){
+                collide((PhysObject) a);
+            }
+            else if(a instanceof Wall){
+                collide((Wall) a);
+            }
+        }
+    }
+    
     /**
      * Checks whether this collides with the given PhysObject.
      * If it does, bumps it to the closest open spot.
@@ -119,7 +157,7 @@ public abstract class PhysObject extends Actor{
     /**
      * Checks whether this collides with the given PhysObject
      */
-    public boolean collidesWith(PhysObject obj){
+    public boolean isIntersecting(PhysObject obj){
         float distance = position.dist(obj.position);
         float boundary = radius + obj.radius;
         
@@ -129,7 +167,7 @@ public abstract class PhysObject extends Actor{
     /**
      * Checks whether this collides with the given Wall
      */
-    public boolean collidesWith(Wall wall){
+    public boolean isIntersecting(Wall wall){
         
         //double check your math here >>;
         
