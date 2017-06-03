@@ -2,7 +2,11 @@ import processing.core.PImage;
 import java.util.List;
 
 public class World extends processing.core.PApplet {
-  
+    // -- constants --
+
+    // music
+    private static final String LEVEL_MUSIC = "assets/Who Likes to Party.mp3";
+
     // -- variables --
   
     // array to hold actors
@@ -10,17 +14,24 @@ public class World extends processing.core.PApplet {
     
     // background image
     Background background;
+
+    // music
+    Music music;
     
     //  -- constructors --
     
     // default constructor
     public World() {
       // default constructor
+      music = new Music();
+      music.switchTrack(LEVEL_MUSIC, true);
     }
     
     // make world with background and default dimensions
     public World(Background background) {
       this.background = background;
+      music = new Music();
+      music.switchTrack(LEVEL_MUSIC, true);
     }
     
     // -- methods --
