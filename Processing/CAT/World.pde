@@ -9,6 +9,9 @@ public class World extends processing.core.PApplet {
 
     // -- variables --
   
+    //player object
+    Player player;
+    
     // array to hold actors
     ArrayList<Actor> actors = new ArrayList<Actor>();
     
@@ -28,7 +31,7 @@ public class World extends processing.core.PApplet {
       // default constructor
       music = new Music();
       music.switchTrack(LEVEL_MUSIC, true);
-      
+      player = new Player(0, 0); //TODO update to start postion later
       
     }
     
@@ -37,6 +40,7 @@ public class World extends processing.core.PApplet {
       this.background = background;
       music = new Music();
       music.switchTrack(LEVEL_MUSIC, true);
+      player = new Player(0, 0); //TODO update to start postion later
     }
     
     // -- methods --
