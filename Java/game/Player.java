@@ -66,10 +66,6 @@ public class Player extends PhysObject {
 
    // -------------------------------------------------------------------------
 
-   private void calculateImgAngle() {
-      //TODO
-   }
-
    private void calculateVelocityAngle() {
       int tempAngle = atan((key[1] + key[3])/(key[0] + key[2]));
       
@@ -81,14 +77,22 @@ public class Player extends PhysObject {
       setAngle(tempAngle);
    }
 
+   private void calculateImageAngle() {
+      PVector mouseVector = new PVector(mouseX, mouseY);
+      mouseVector.sub(position);
+
+      pushMatrix();
+         rotate(mouseVector.heading());
+      popMatrix();
+   }
+
    // -------------------------------------------------------------------------
 
-   public void draw() {
-      // imageMode(CENTER):
-
-      // calculate new image angle based on mouse location
-      // calculateImgAngle();
-
+   public void display() {
       calculateVelocityAngle();
+      calculateImageAngle();
+
+      move();
+      resetMatrix();
    }
 }
