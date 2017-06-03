@@ -16,7 +16,6 @@ public class TabbyCat extends PhysObject {
     * Fields
     */
    private Music catSounds;
-   private Random rng;
    private double startTime;
    private int waitTime;
 
@@ -27,8 +26,8 @@ public class TabbyCat extends PhysObject {
       super(image, true, x, y);
       catSounds = new Music();
       rng = new Random();
-      markTime = System.currentTimeMillis;
-      waitTime = rng.nextInt(5000) + 10000;
+      markTime = millis();
+      waitTime = random(5000) + 10000;
    }
 
    // -------------------------------------------------------------------------
@@ -60,8 +59,8 @@ public class TabbyCat extends PhysObject {
                catSounds.switchTrack(SOUND_8, false);
                break;
          }
-         startTime = System.currentTimeMillis;
-         waitTime = rng.nextInt(5000) + 11000;
+         startTime = millis();
+         waitTime = random(5000) + 11000;
       }
    }
 
