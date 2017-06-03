@@ -13,7 +13,6 @@ public class Music {
     */
    private Minim minim;
    private AudioPlayer player;
-   private String curSong;
         
    // -------------------------------------------------------------------------
 
@@ -29,34 +28,12 @@ public class Music {
 
    /*
     * Switches the music track to the specified track
-    * 
-    * track = "title" - switches to TITLE
-    * track = "menu" - switches to MENU
-    * track = "level" - switches to LEVEL
-    *
-    * If the function returns without changing the song, either the song specified
-    * in track is already playing or track is an invalid string
     */
-   public void switchTrack(String track){
-      if (track.equals(curSong)) {
-         return;
-      }
-
-      if (track.equals("title")) {
-         player = minim.loadFile(TITLE);
-      }
-      else if (track.equals("menu")) {
-         player = minim.loadFile(MENU);
-      }
-      else if (track.equals("level")) {
-         player = minim.loadFile(LEVEL);
-      }
-      else {
-         return;
-      }
-
+   public void switchTrack(String track, boolean loop){
+      player = minim.loadFile(track);
       player.play();
-      player.loop();
-      curSong = track;
+      if (loop) {
+         player.loop();
+      }
    }
 }
