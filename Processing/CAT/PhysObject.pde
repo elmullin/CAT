@@ -33,6 +33,7 @@ public abstract class PhysObject extends Actor {
      * Constructor. Creates a new object at the given location with the given velocity.
      */
     public PhysObject(boolean isMoveable, int posX, int posY, int velX, int velY){
+        super(posX, posY);
         moveable = isMoveable;
         position = new PVector(posX, posY);
         velocity = new PVector(velX, velY);
