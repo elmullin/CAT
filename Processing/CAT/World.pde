@@ -18,6 +18,9 @@ public class World extends processing.core.PApplet {
     // music
     Music music;
     
+    //score
+    public Score score;
+    
     //  -- constructors --
     
     // default constructor
@@ -25,6 +28,8 @@ public class World extends processing.core.PApplet {
       // default constructor
       music = new Music();
       music.switchTrack(LEVEL_MUSIC, true);
+      
+      
     }
     
     // make world with background and default dimensions
