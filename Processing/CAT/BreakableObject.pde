@@ -15,6 +15,17 @@ public class BreakableObject extends PhysObject {
 
 
    public void display() {
-      //ArrayList<Actor> actors = 
+      //TODO: set the image
+   }
+
+
+// ----------------------------------------------------------------------------
+
+   /*
+    * Called by a player or cat if they collide with this object
+    */
+   public void breakObject() {
+      getWorld().score.incrementObejctsBroken(value);
+      getWorld().remove(this);
    }
 }
