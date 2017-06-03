@@ -30,7 +30,7 @@ public class TabbyCat extends PhysObject {
       super(image, true, x, y);
       catSounds = new Music();
       markTime = millis();
-      waitTime = random(5000) + 10000;
+      waitTime = random(15000);
    }
 
    // -------------------------------------------------------------------------
@@ -63,7 +63,7 @@ public class TabbyCat extends PhysObject {
                break;
          }
          startTime = millis();
-         waitTime = random(5000) + 11000;
+         waitTime = random(5000) + 10000;
       }
    }
 
