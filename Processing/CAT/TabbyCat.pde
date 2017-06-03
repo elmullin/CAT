@@ -25,7 +25,6 @@ public class TabbyCat extends PhysObject {
    public TabbyCat(PImage image, int x, int y){
       super(image, true, x, y);
       catSounds = new Music();
-      rng = new Random();
       markTime = millis();
       waitTime = random(5000) + 10000;
    }
