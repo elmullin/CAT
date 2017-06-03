@@ -16,7 +16,7 @@ public class TabbyCat extends PhysObject {
     * Fields
     */
    private Music catSounds;
-   private double startTime;
+   private int startTime;
    private int waitTime;
 
 
@@ -31,7 +31,7 @@ public class TabbyCat extends PhysObject {
 
    // -------------------------------------------------------------------------
    private void makeNoise() {
-      if (System.currentTimeMillis >= markTime + waitTime) {
+      if (millis() >= startTime + waitTime) {
          switch (rng.nextInt(8) + 1) {
             case 1:
                catSounds.switchTrack(SOUND_1, false);
@@ -61,6 +61,18 @@ public class TabbyCat extends PhysObject {
          startTime = millis();
          waitTime = random(5000) + 11000;
       }
+   }
+   
+   //override collide for breakable object
+   public void collide(BreakableObject broke){
+     super(broke);
+     broke.breakObject();
+   }
+   
+   //override collide for ScoreZones
+   public void collide(ScoreZone goal){
+     super(goal);
+     goal.scoreCat(this);
    }
 
    public void display() {
