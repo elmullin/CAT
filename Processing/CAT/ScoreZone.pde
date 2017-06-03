@@ -1,14 +1,12 @@
-import processing.core.PImage;
-
 public class ScoreZone extends PhysObject {
   
-  public ScoreZone(int x, int y){
-    super(false, x, y);
+  public ScoreZone(PImage image, float x, float y, float radius){
+    super(image, x, y, radius, false);
   }
   
-  public void scoreCat(TabbyCat scored){
+  public void scoreCat(TabbyCat target){
     getWorld().score.incrementCatsCorralled();
-    getWorld().removeActor(scored);
+    getWorld().removeActor(target);
   }//close scoreCat
 
 }
