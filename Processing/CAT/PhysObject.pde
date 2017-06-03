@@ -1,4 +1,4 @@
-public abstract class PhysObject extends Actor {
+public abstract class PhysObject extends Actor{
     
     // points from 0,0 to the object's location
     protected PVector position;
@@ -15,17 +15,19 @@ public abstract class PhysObject extends Actor {
      * Constructor. Creates a new object at the given location.
      */
     public PhysObject(boolean isMoveable, int x, int y){
-        super(x, y);
+		super(x, y);
         moveable = isMoveable;
+        position = new PVector(x, y);
         velocity = new PVector(0, 0);
     }
-    
-    /**
+	
+	/**
      * Constructor. Creates a new object with an image at the given location.
      */
     public PhysObject(PImage image, boolean isMoveable, int x, int y){
         super(image, x, y);
         moveable = isMoveable;
+		position = new PVector(x, y);
         velocity = new PVector(0, 0);
     }
     
@@ -33,48 +35,86 @@ public abstract class PhysObject extends Actor {
      * Constructor. Creates a new object at the given location with the given velocity.
      */
     public PhysObject(boolean isMoveable, int posX, int posY, int velX, int velY){
-        super(posX, posY);
+		super(image, posX, posY);
         moveable = isMoveable;
         position = new PVector(posX, posY);
         velocity = new PVector(velX, velY);
     }
-    
-     /**
+	
+	/**
      * Constructor. Creates a new object with an image at the given location with the given velocity.
      */
     public PhysObject(PImage image, boolean isMoveable, int posX, int posY, int velX, int velY){
         super(image, posX, posY);
         moveable = isMoveable;
+		position = new PVector(posX, posY);
         velocity = new PVector(velX, velY);
     }
     
     /**
-     * What this object should do on collision with another object.
-     * Default behavior is wall-like.
+     * Performs a collision check with a PhysObject.
      */
-    public void collision(PhysObject other){
-		
-		float distance = position.dist(other.position);
-        float boundary = radius + other.radius;
+    private boolean collidesWith(PhysObject obj){
+        float distance = position.dist(obj.position);
+        float boundary = radius + obj.radius;
+        
+        return distance < boundary;
+    }
+    
+    /**
+     * Performs a collision check with a wall.
+     */
+    private boolean collidesWith(Wall wall){
+        
+        //double check your math here >>;
+        
+        if (wall.bottom < (position.y - radius)
+         || wall.left < (position.x + radius)
+         || wall.top > (position.y + radius)
+         || wall.right > (position.x - radius)){
+             return false;
+         }
+        else{
+            // box inside box, double check closest corner
+        }
+    }
+    
+    /* collsion for two round objects */
+    private void collide(PhysObject obj){
+        float distance = position.dist(obj.position);
+        float boundary = radius + obj.radius;
         
         if (distance < boundary) {
-            if(other.moveable){
-                PVector adjust = PVector.sub(position, other.position).normalize().mult((boundary - distance) / 2.0);
+            if(obj.moveable){
+                PVector adjust = PVector.sub(position, obj.position).normalize().mult((boundary - distance) / 2.0);
                 position.add(adjust);
-                other.position.add(adjust);
+                obj.position.add(adjust);
             }
             else {
-                position.add(PVector.sub(position, other.position).normalize().mult(boundary - distance));
+                position.add(PVector.sub(position, obj.position).normalize().mult(boundary - distance));
             }
         }
     }
     
-    /**
-     * Performs a collision check with the given object.
-     */
-    public boolean collidesWith(PhysObject other){
-        float boundary = radius + other.radius;
-        return position.dist(other.position) < boundary;
+    /* collsion for a wall and a round object
+       note: this could probably be optimized
+       note: if this isn't working, try flipping wall.x and ()
+       */
+    private void collide(Wall wall){
+        float top = wall.bottom - (position.y + radius);
+        float right = wall.left - (position.x + radius);
+        float bottom = wall.top - (position.y - radius);
+        float left = wall.right - (position.x - radius);
+        
+        float x = abs(left) < abs(right)? left : right;
+        float y = abs(top) < abs(bottom)? top : bottom;
+        
+        if (abs(x) < abs(y)){
+            position.add(x, 0);
+        }
+        else {
+            position.add(0, y);
+        }
     }
     
     /**
