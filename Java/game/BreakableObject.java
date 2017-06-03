@@ -29,7 +29,7 @@ public class BreakableObject extends PhysObject {
     * Called by a player or cat if they collide with this object
     */
    public void breakObject() {
-      world.score.incrementObejctsBroken(value);
-      world.remove(this);
+      getWorld().score.incrementObejctsBroken(value);
+      getWorld().remove(this);
    }
 }
