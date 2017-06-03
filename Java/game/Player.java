@@ -71,7 +71,7 @@ public class Player extends PhysObject {
    }
 
    private void calculateVelocityAngle() {
-      private int tempAngle = atan((key[1] + key[3])/(key[0] + key[2]));
+      int tempAngle = atan((key[1] + key[3])/(key[0] + key[2]));
       
       if (key[1] + key[3] < 0) {
          tempAngle += HALF_PI;
