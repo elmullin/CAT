@@ -22,12 +22,12 @@ public class Actor extends processing.core.PApplet {
     }
     
     // make actor in position
-    public Actor(int x, int y) {
+    public Actor(float x, float y) {
       position = new PVector(x, y);
     }
     
     // make actor in position with sprite
-    public Actor(PImage sprite, int x, int y) {
+    public Actor(PImage sprite, float x, float y) {
       //System.out.println("in constructor with sprite: " + sprite.toString());
       position = new PVector(x, y);
       this.sprite = sprite;

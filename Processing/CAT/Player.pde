@@ -17,10 +17,9 @@ public class Player extends PhysObject {
    /**
     * Constructor. Creates a new object at the given location.
     */
-   public Player(int posX, int posY) {
-      super(true, posX, posY);
+   public Player(PImage sprite, int posX, int posY) {
+      super(sprite, posX, posY, 0, 0, 1, true);
       keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D
-      sprite = loadImage("assets/PlayerPlaceHolder.png");
    }
 
    // -------------------------------------------------------------------------
