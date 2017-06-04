@@ -22,9 +22,9 @@ public class TabbyCat extends PhysObject {
 
    // -------------------------------------------------------------------------
 
-   public TabbyCat(PImage image, float x, float y){
+   public TabbyCat(PImage image, float x, float y, Minim minim){
       super(image, x, y, 0, 0, 1, true);
-      catSounds = new Music();
+      catSounds = new Music(minim);
       startTime = millis();
       waitTime = random(5000) + 10000;
    }

@@ -27,17 +27,16 @@ public class World extends processing.core.PApplet {
     //  -- constructors --
     
     // default constructor
-    public World() {
-      // default constructor
-      music = new Music();
+    public World(Minim minim) {
+      music = new Music(minim);
       music.switchTrack(LEVEL_MUSIC, true);
       
     }
     
     // make world with background and default dimensions
-    public World(Background background) {
+    public World(Background background, Minim minim) {
       this.background = background;
-      music = new Music();
+      music = new Music(minim);
       music.switchTrack(LEVEL_MUSIC, true);
     }
     

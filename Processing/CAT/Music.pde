@@ -9,8 +9,8 @@ public class Music {
         
    // -------------------------------------------------------------------------
 
-   public Music(){
-      minim = new Minim(this);
+   public Music(Minim minim){
+      this.minim = minim;
    }
 
    // -------------------------------------------------------------------------
