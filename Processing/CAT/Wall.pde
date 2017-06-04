@@ -24,6 +24,7 @@ public class Wall{
             top = y2;
             bottom = y1;
         }
+        rectMode(CORNERS);
         rect = createShape(RECT, left, top, right, bottom);
         center = new PVector((left + right) / 2, (top + bottom) / 2);
     }
