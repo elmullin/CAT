@@ -1,42 +1,43 @@
 package game;
 
 import processing.core.*;
+import ddf.minim.*;
 
 public class TabbyCat extends PhysObject {
    /*
     * Constants
     */
-   private static final String SOUND_1 = "assets/Cat_Meow_1.mp3";
-   private static final String SOUND_2 = "assets/Cat_Meow_2.mp3";
-   private static final String SOUND_3 = "assets/Cat_Meow_3.mp3";
-   private static final String SOUND_4 = "assets/Cat_Meow_4.mp3";
-   private static final String SOUND_5 = "assets/Cat_Meow_5.mp3";
-   private static final String SOUND_6 = "assets/Cat_Meow_6.mp3";
-   private static final String SOUND_7 = "assets/Cat_Meow_7.mp3";
-   private static final String SOUND_8 = "assets/Cat_Purr_1.mp3";
+   private static final String SOUND_1 = "/assets/Cat_Meow_1.mp3";
+   private static final String SOUND_2 = "/assets/Cat_Meow_2.mp3";
+   private static final String SOUND_3 = "/assets/Cat_Meow_3.mp3";
+   private static final String SOUND_4 = "/assets/Cat_Meow_4.mp3";
+   private static final String SOUND_5 = "/assets/Cat_Meow_5.mp3";
+   private static final String SOUND_6 = "/assets/Cat_Meow_6.mp3";
+   private static final String SOUND_7 = "/assets/Cat_Meow_7.mp3";
+   private static final String SOUND_8 = "/assets/Cat_Purr_1.mp3";
 
 
    /*
     * Fields
     */
    private Music catSounds;
-   private double startTime;
-   private int waitTime;
+   private int startTime;
+   private float waitTime;
 
 
    // -------------------------------------------------------------------------
 
-   public TabbyCat(PImage image, int x, int y){
-      super(image, true, x, y);
-      catSounds = new Music();
-      markTime = millis();
-      waitTime = random(15000);
+   public TabbyCat(PImage image, float x, float y, Minim minim){
+      super(image, x, y, 0, 0, 1, true);
+      catSounds = new Music(minim);
+      startTime = millis();
+      waitTime = random(5000) + 10000;
    }
 
    // -------------------------------------------------------------------------
    private void makeNoise() {
-      if (System.currentTimeMillis >= markTime + waitTime) {
-         switch (rng.nextInt(8) + 1) {
+      if (millis() >= startTime + waitTime) {
+         switch ((int)random(8) + 1) {
             case 1:
                catSounds.switchTrack(SOUND_1, false);
                break;
@@ -63,11 +64,24 @@ public class TabbyCat extends PhysObject {
                break;
          }
          startTime = millis();
-         waitTime = random(5000) + 10000;
+         waitTime = random(5000) + 11000;
       }
+   }
+   
+   //override collide for breakable object
+   public void collide(BreakableObject broke){
+     super.collide(broke);
+     broke.breakObject();
+   }
+   
+   //override collide for ScoreZones
+   public void collide(ScoreZone goal){
+     super.collide(goal);
+     goal.scoreCat(this);
    }
 
    public void display() {
+      super.display();
       makeNoise();
    }
 }

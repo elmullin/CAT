@@ -3,33 +3,19 @@ package game;
 import processing.core.*;
 
 public class BreakableObject extends PhysObject {
-   /*
-    * Fields
-    */
-   private int value;
 
-   // -------------------------------------------------------------------------
-
-   public BreakableObject(int value, int posx, int posy) {
-      super(false, posx, posy);
+   private int value; // the cost of the object
+   
+   public BreakableObject(int value, PImage image, float posX, float posY, float radius) {
+      super(image, posX, posY, radius, false);
       this.value = value;
    }
-
-   // -------------------------------------------------------------------------
-
-
-   public void display() {
-      //TODO: set the image
-   }
-
-
-// ----------------------------------------------------------------------------
 
    /*
     * Called by a player or cat if they collide with this object
     */
    public void breakObject() {
-      getWorld().score.incrementObejctsBroken(value);
-      getWorld().remove(this);
+      getWorld().score.incrementObjectsBroken(value);
+      getWorld().removeActor(this);
    }
 }

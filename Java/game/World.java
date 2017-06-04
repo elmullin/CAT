@@ -2,35 +2,59 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
-import processing.core.PImage;
+import processing.core.*;
+import ddf.minim.*;
 
-public class World extends processing.core.PApplet {
-  
+public class World {
+    // -- constants --
+
+    // music
+    private static final String LEVEL_MUSIC = "/assets/Who Likes to Party.mp3";
+
     // -- variables --
   
+    //player object
+    Player player;
+    
     // array to hold actors
     ArrayList<Actor> actors = new ArrayList<Actor>();
     
+    // array to hold walls
+    ArrayList<Wall> walls = new ArrayList<Wall>();
+    
     // background image
     Background background;
+
+    // music
+    Music music;
+    
+    //score
+    public Score score;
     
     //  -- constructors --
     
     // default constructor
-    public World() {
-      // default constructor
+    public World(Minim minim) {
+      music = new Music(minim);
+      music.switchTrack(LEVEL_MUSIC, true);
+      
     }
     
     // make world with background and default dimensions
-    public World(Background background) {
+    public World(Background background, Minim minim) {
       this.background = background;
+      music = new Music(minim);
+      music.switchTrack(LEVEL_MUSIC, true);
     }
     
     // -- methods --
     
-    // call this each update to trigger actor updates
+    // call this each update to trigger actor and wall updates
     public void display() {
       background.display();
+      for (Wall wall : walls) {
+         wall.display();  
+      }
       for (Actor actor : actors) {
         actor.display();
       }
@@ -60,5 +84,9 @@ public class World extends processing.core.PApplet {
         if (actor.getClass().equals(subclass))
           filtered.add(actor);
       return filtered;
+    }
+    
+    public void addWall(Wall wall) {
+        walls.add(wall);  
     }
 }

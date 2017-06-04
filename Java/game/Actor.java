@@ -1,8 +1,8 @@
 package game;
 
-import processing.core.PImage;
+import processing.core.*;
 
-public class Actor extends processing.core.PApplet {
+public class Actor {
   
     // -- variables --
   
@@ -10,43 +10,39 @@ public class Actor extends processing.core.PApplet {
     private World world;
     
     // sprite of actor
-    private PImage image;
+    private PImage sprite;
     
     // points from 0,0 to the object's location
     protected PVector position;
     
     // -- constructors --
     
-    // default constructor
-    public Actor() {
-      //Do nothing default constructor 
-    }
-    
-    // make actor with image
-    public Actor(PImage image) {
-      setImage(image);
+    // make actor with sprite
+    public Actor(PImage sprite) {
+      this.sprite = sprite;
+      position = new PVector(0,0);
     }
     
     // make actor in position
-    public Actor(int x, int y) {
+    public Actor(float x, float y) {
       position = new PVector(x, y);
     }
     
-    // make actor in position with image
-    public Actor(PImage image, int x, int y) {
+    // make actor in position with sprite
+    public Actor(PImage sprite, float x, float y) {
+      this.sprite = sprite;
       position = new PVector(x, y);
-      this.image = image;
     }
     
     // -- methods --
     
     // display actor on screen
     public void display() {
-      if (image != null)
-        image(image, (int) position.x, (int) position.y);
-        //image(image, 0, 0);
-        resetMatrix();
-        //System.out.println(image.toString());
+      if (sprite != null) {
+        image(sprite, position.x, position.y);
+        
+      }
+      resetMatrix();
     }
     
     // change location of actor
@@ -55,17 +51,17 @@ public class Actor extends processing.core.PApplet {
       position.y = y;
     }
     
-    // change image of actor
-    void setImage(PImage image) {
-      this.image = image;
+    // change sprite of actor
+    void setImage(PImage sprite) {
+      this.sprite = sprite;
     }
     
-    // change image of actor to given size
+    // change sprite of actor to given size
     void scaleImage(int x, int y) {
-      this.image.resize(x, y);
+      this.sprite.resize(x, y);
     }
     
-    // scale image of actor by given factor
+    // scale sprite of actor by given factor
     void scaleImage(double factor) {
       scaleImage((int) Math.round(factor * width), (int) Math.round(factor * height));
     }
@@ -106,8 +102,8 @@ public class Actor extends processing.core.PApplet {
       return height;
     }
       
-    // returns image of actor
-    PImage getImage() {
-      return image; 
+    // returns sprite of actor
+    public PImage getImage() {
+      return sprite; 
     }
 }

@@ -1,6 +1,6 @@
 package game;
 
-import processing.core.*;
+import processing.core.*; 
 
 public class Player extends PhysObject {
    /*
@@ -16,17 +16,15 @@ public class Player extends PhysObject {
     * Fields
     */
    private int[] keysPressed;
-   // private PImage img;
-   // private double imgAngle;
+   PImage sprite;
 
    /**
     * Constructor. Creates a new object at the given location.
     */
    public Player(int posX, int posY) {
-      super(posX, posY);
+      super(true, posX, posY);
       keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D
-      // img = 
-      imgAngle = 0;
+      sprite = loadImage("assets/PlayerPlaceHolder.png");
    }
 
    // -------------------------------------------------------------------------
@@ -67,13 +65,13 @@ public class Player extends PhysObject {
    // -------------------------------------------------------------------------
 
    private void calculateVelocityAngle() {
-      int tempAngle = atan((key[1] + key[3])/(key[0] + key[2]));
+      float tempAngle = atan((keysPressed[1] + keysPressed[3])/(keysPressed[0] + keysPressed[2]));
       
-      if (key[1] + key[3] < 0) {
+      if (keysPressed[1] + keysPressed[3] < 0) {
          tempAngle += HALF_PI;
          tempAngle = -1 * tempAngle;
       }
-
+      
       setAngle(tempAngle);
    }
 
@@ -92,6 +90,92 @@ public class Player extends PhysObject {
       calculateVelocityAngle();
       calculateImageAngle();
 
+      move();
+      resetMatrix();
+   }
+}
+public class Player extends PhysObject {
+   /*
+    * Constants
+    */
+   private static final int MOVE_RATE = 1;
+   private static final char UP = 'w';
+   private static final char LEFT = 'a';
+   private static final char DOWN = 's';
+   private static final char RIGHT = 'd';
+
+   /*
+    * Fields
+    */
+   private int[] keysPressed;
+
+   /**
+    * Constructor. Creates a new object at the given location.
+    */
+   public Player(PImage sprite, int posX, int posY) {
+      super(sprite, posX, posY, 0, 0, 1, true);
+      keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D, respectively
+   }
+
+   // -------------------------------------------------------------------------
+   /*
+    * Overwrite default keyPressed() and keyReleased() to calculate new velocity vector
+    * Called whenever a key is pressed or released, respectively
+    */
+   public int[] pressKey(char key) {
+      System.out.println("Pressed " + key);
+      if (UP == key) {
+         keysPressed[0] = -1 * MOVE_RATE;
+      }
+      else if (LEFT == key) {
+         keysPressed[1] = -1 * MOVE_RATE;
+      }
+      if (DOWN == key) {
+         keysPressed[2] = MOVE_RATE;
+      }
+      if (RIGHT == key) {
+         keysPressed[3] = MOVE_RATE;
+      }
+      return keysPressed;
+   }
+
+   public int[] releaseKey(char key) {
+      System.out.println("Released " + key);
+      if (UP == key) {
+         keysPressed[0] = 0;
+      }
+      else if (LEFT == key) {
+         keysPressed[1] = 0;
+      }
+      if (DOWN == key) {
+         keysPressed[2] = 0;
+      }
+      if (RIGHT == key) {
+         keysPressed[3] = 0;
+      }
+      return keysPressed;
+   }
+
+   // -------------------------------------------------------------------------
+
+   private void calculateImageAngle() {
+      PVector mouseVector = new PVector(mouseX, mouseY);
+      mouseVector.sub(position);
+      
+      pushMatrix();
+         rotate(mouseVector.heading());
+         translate(position.x, position.y);
+         
+         image(getImage(), 0, 0);
+      popMatrix();
+   }
+
+   // -------------------------------------------------------------------------
+
+   public void display() {
+      velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
+      //calculateImageAngle();
+      super.display(); // TODO: delete this once fix rotation
       move();
       resetMatrix();
    }

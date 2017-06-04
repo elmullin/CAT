@@ -2,15 +2,16 @@ package game;
 
 import processing.core.*;
 
-public class Background extends PApplet{
+public class Background{
     private PImage bg;
         
-    public Background(String fileName){
-        bg = loadImage("assets/" + fileName);
+    public Background(PImage bg){
+        this.bg = bg;
     }
         
     public void display(){
-        image(bg, 0, 0);
+        if (bg != null)
+          image(bg, 400, 300);
         resetMatrix();
     }
 }
