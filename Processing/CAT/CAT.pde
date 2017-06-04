@@ -15,12 +15,12 @@ public void setup(){
 	LevelBuilder levelBuilder = new LevelBuilder();
 	
 	// load images
-	bg = loadImage("/assets/bg.png");
+	bgImg = loadImage("/assets/bg.png");
 	catImg = loadImage("/assets/cat.gif");
 	playerImg = loadImage("/assets/PlayerPlaceHolder.gif");
 	scoreZoneImg = loadImage("/assets/scorezone.png");
 	   
-	world = levelBuilder.buildWorld(minim, catImg, bgImg, playerImg);
+	world = levelBuilder.buildWorld(minim, bgImg, playerImg, catImg, catImg); //TODO replace with scorezone
 	player = (Player)(world.getActors(Player.class).get(0));
 }
 
