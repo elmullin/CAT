@@ -48,11 +48,11 @@ public class World {
     // call this each update to trigger actor and wall updates
     public void display() {
       background.display();
-      for (Actor actor : actors) {
-        actor.display();
-      }
       for (Wall wall : walls) {
          wall.display();  
+      }
+      for (Actor actor : actors) {
+        actor.display();
       }
     }
     
