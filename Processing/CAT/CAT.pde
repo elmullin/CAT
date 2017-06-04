@@ -15,7 +15,7 @@ public void setup(){
     // -- load images --
     catgif = loadImage("/assets/cat.gif");
     bg = loadImage("/assets/bg.png");
-    playerImg = loadImage("/assets/PlayerPlaceHolder.png");
+    playerImg = loadImage("/assets/PlayerPlaceHolder.gif");
    
    world = levelBuilder.buildWorld(minim, catgif, bg, playerImg);
    

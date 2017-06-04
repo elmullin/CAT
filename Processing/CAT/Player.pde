@@ -2,7 +2,7 @@ public class Player extends PhysObject {
    /*
     * Constants
     */
-   private static final int MOVE_RATE = 1;
+   private static final int MOVE_RATE = 2;
    private static final char UP = 'w';
    private static final char LEFT = 'a';
    private static final char DOWN = 's';
@@ -12,12 +12,15 @@ public class Player extends PhysObject {
     * Fields
     */
    private int[] keysPressed;
+   
+   PVector mouseVector;
 
    /**
     * Constructor. Creates a new object at the given location.
     */
    public Player(PImage sprite, int posX, int posY) {
       super(sprite, posX, posY, 0, 0, 1, true);
+      mouseVector = new PVector(mouseX, mouseY);
       keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D, respectively
    }
 
@@ -27,7 +30,6 @@ public class Player extends PhysObject {
     * Called whenever a key is pressed or released, respectively
     */
    public int[] pressKey(char key) {
-      System.out.println("Pressed " + key);
       if (UP == key) {
          keysPressed[0] = -1 * MOVE_RATE;
       }
@@ -44,7 +46,6 @@ public class Player extends PhysObject {
    }
 
    public int[] releaseKey(char key) {
-      System.out.println("Released " + key);
       if (UP == key) {
          keysPressed[0] = 0;
       }
@@ -61,26 +62,18 @@ public class Player extends PhysObject {
    }
 
    // -------------------------------------------------------------------------
-
-   private void calculateImageAngle() {
-      PVector mouseVector = new PVector(mouseX, mouseY);
-      mouseVector.sub(position);
-      
-      pushMatrix();
-         rotate(mouseVector.heading());
-         translate(position.x, position.y);
-         
-         image(getImage(), 0, 0);
-      popMatrix();
-   }
-
-   // -------------------------------------------------------------------------
-
+   
    public void display() {
       velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
-      //calculateImageAngle();
-      super.display(); // TODO: delete this once fix rotation
-      move();
+      
+	  move();
+	  
+      translate(position.x, position.y);
+      mouseVector.set(mouseX, mouseY);
+      mouseVector.sub(position);
+      rotate(mouseVector.heading());
+      image(getImage(), 0, 0);  
+      
       resetMatrix();
    }
 }
