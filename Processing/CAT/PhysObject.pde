@@ -1,8 +1,5 @@
 public abstract class PhysObject extends Actor{
     
-    // points from 0,0 to the object's location
-    protected PVector position;
-    
     // A vector describing the object's movement
     protected PVector velocity;
     
@@ -22,7 +19,6 @@ public abstract class PhysObject extends Actor{
         super(image, posX, posY);
         radius = collisionRadius;
         moveable = isMoveable;
-        position = new PVector(posX, posY);
         velocity = new PVector(velX, velY);
     }
     
@@ -34,7 +30,6 @@ public abstract class PhysObject extends Actor{
         super(posX, posY);
         radius = collisionRadius;
         moveable = isMoveable;
-        position = new PVector(posX, posY);
         velocity = new PVector(velX, velY);
     }
     
@@ -98,6 +93,10 @@ public abstract class PhysObject extends Actor{
         return amt;
     }
     
+    public PVector setVelocity(PVector newVelocity) {
+       velocity = newVelocity;
+       return velocity;
+    }
     
     /* COLLISIONS */
     
