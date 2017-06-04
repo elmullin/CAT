@@ -20,7 +20,7 @@ public class Player extends Actor {
 	 */
 	public Player(PImage sprite, int posX, int posY) {
 		super(sprite, posX, posY, 0, 0, 1, true);
-		mouseVector = new PVector(mouseX, mouseY);
+		mouseVector = new PVector(0, 0);
 		keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D, respectively
 	}
 
@@ -66,11 +66,11 @@ public class Player extends Actor {
 	public void display() {
 		velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
 		
-		move();
+		super.move();
 		
-		translate(super.position.x, super.position.y);
+		translate(position.x, position.y);
 		mouseVector.set(mouseX, mouseY);
-		mouseVector.sub(super.position);
+		mouseVector.sub(position);
 		rotate(mouseVector.heading());
 		image(getImage(), 0, 0);  
 		

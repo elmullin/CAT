@@ -8,9 +8,6 @@ public class Actor extends PhysObject{
 	// sprite of actor
 	private PImage sprite;
 	
-	// points from 0,0 to the object's location
-	private PVector position;
-	
 	// -- constructors --
 
 	// make actor in position with sprite
