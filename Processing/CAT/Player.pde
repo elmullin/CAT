@@ -2,7 +2,7 @@ public class Player extends PhysObject {
    /*
     * Constants
     */
-   private static final int MOVE_RATE = 1;
+   private static final int MOVE_RATE = 100;
    private static final char UP = 'w';
    private static final char LEFT = 'a';
    private static final char DOWN = 's';
@@ -12,7 +12,6 @@ public class Player extends PhysObject {
     * Fields
     */
    private int[] keysPressed;
-   PImage sprite;
 
    /**
     * Constructor. Creates a new object at the given location.
@@ -27,7 +26,8 @@ public class Player extends PhysObject {
     * Overwrite default keyPressed() and keyReleased() to calculate new velocity vector
     * Called whenever a key is pressed or released, respectively
     */
-   public void keyPressed() {
+   public void pressKey(char key) {
+      System.out.println("Pressed " + key);
       if (UP == key) {
          keysPressed[0] = -1 * MOVE_RATE;
       }
@@ -42,7 +42,8 @@ public class Player extends PhysObject {
       }
    }
 
-   public void keyReleased() {
+   public void releaseKey(char key) {
+      System.out.println("Released " + key);
       if (UP == key) {
          keysPressed[0] = 0;
       }
@@ -60,12 +61,19 @@ public class Player extends PhysObject {
    // -------------------------------------------------------------------------
 
    private void calculateVelocityAngle() {
-      float tempAngle = atan((keysPressed[1] + keysPressed[3])/(keysPressed[0] + keysPressed[2]));
-      
-      if (keysPressed[1] + keysPressed[3] < 0) {
-         tempAngle += HALF_PI;
-         tempAngle = -1 * tempAngle;
+      float tempAngle;
+      if (0 != keysPressed[0] + keysPressed[2]) {
+         tempAngle = atan((keysPressed[1] + keysPressed[3])/(keysPressed[0] + keysPressed[2]));
+         if (keysPressed[1] + keysPressed[3] < 0) {
+            tempAngle += HALF_PI;
+            tempAngle = -1 * tempAngle;
+         }
       }
+      else {
+         tempAngle = PI * (keysPressed[1] + keysPressed[3]);
+      }
+      
+      
       
       setAngle(tempAngle);
    }
@@ -73,7 +81,7 @@ public class Player extends PhysObject {
    private void calculateImageAngle() {
       PVector mouseVector = new PVector(mouseX, mouseY);
       mouseVector.sub(position);
-
+      
       pushMatrix();
          rotate(mouseVector.heading());
       popMatrix();
@@ -82,10 +90,11 @@ public class Player extends PhysObject {
    // -------------------------------------------------------------------------
 
    public void display() {
+      super.display();
       calculateVelocityAngle();
       calculateImageAngle();
 
       move();
-      resetMatrix();
+      //resetMatrix();
    }
 }

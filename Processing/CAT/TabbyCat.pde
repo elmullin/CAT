@@ -2,14 +2,14 @@ public class TabbyCat extends PhysObject {
    /*
     * Constants
     */
-   private static final String SOUND_1 = "assets/Cat_Meow_1.mp3";
-   private static final String SOUND_2 = "assets/Cat_Meow_2.mp3";
-   private static final String SOUND_3 = "assets/Cat_Meow_3.mp3";
-   private static final String SOUND_4 = "assets/Cat_Meow_4.mp3";
-   private static final String SOUND_5 = "assets/Cat_Meow_5.mp3";
-   private static final String SOUND_6 = "assets/Cat_Meow_6.mp3";
-   private static final String SOUND_7 = "assets/Cat_Meow_7.mp3";
-   private static final String SOUND_8 = "assets/Cat_Purr_1.mp3";
+   private static final String SOUND_1 = "/assets/Cat_Meow_1.mp3";
+   private static final String SOUND_2 = "/assets/Cat_Meow_2.mp3";
+   private static final String SOUND_3 = "/assets/Cat_Meow_3.mp3";
+   private static final String SOUND_4 = "/assets/Cat_Meow_4.mp3";
+   private static final String SOUND_5 = "/assets/Cat_Meow_5.mp3";
+   private static final String SOUND_6 = "/assets/Cat_Meow_6.mp3";
+   private static final String SOUND_7 = "/assets/Cat_Meow_7.mp3";
+   private static final String SOUND_8 = "/assets/Cat_Purr_1.mp3";
 
 
    /*
@@ -76,6 +76,7 @@ public class TabbyCat extends PhysObject {
    }
 
    public void display() {
+      super.display();
       makeNoise();
    }
 }

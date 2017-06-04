@@ -1,6 +1,6 @@
-import processing.core.PImage;
+//import processing.core.*;
 
-public class Actor extends processing.core.PApplet {
+public class Actor {
   
     // -- variables --
   
@@ -17,7 +17,7 @@ public class Actor extends processing.core.PApplet {
     
     // make actor with sprite
     public Actor(PImage sprite) {
-      setImage(sprite);
+      this.sprite = sprite;
       position = new PVector(0,0);
     }
     
@@ -28,9 +28,8 @@ public class Actor extends processing.core.PApplet {
     
     // make actor in position with sprite
     public Actor(PImage sprite, float x, float y) {
-      //System.out.println("in constructor with sprite: " + sprite.toString());
-      position = new PVector(x, y);
       this.sprite = sprite;
+      position = new PVector(x, y);
     }
     
     // -- methods --
@@ -38,12 +37,10 @@ public class Actor extends processing.core.PApplet {
     // display actor on screen
     public void display() {
       if (sprite != null) {
-        //System.out.println(sprite.toString());//
-        //image(sprite, position.x, position.y);
-        image(sprite, 1, 1);
+        image(sprite, position.x, position.y);
+        
       }
-        //resetMatrix();
-        //System.out.println(sprite.toString());
+      resetMatrix();
     }
     
     // change location of actor
@@ -104,7 +101,7 @@ public class Actor extends processing.core.PApplet {
     }
       
     // returns sprite of actor
-    PImage getImage() {
+    public PImage getImage() {
       return sprite; 
     }
 }
