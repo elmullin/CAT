@@ -1,7 +1,7 @@
 public class ScoreZone extends PhysObject {
   
-  public ScoreZone(PImage image, float x, float y, float radius){
-    super(image, x, y, radius, false);
+  public ScoreZone(float x, float y, float radius){
+    super(x, y, radius, false);
   }
   
   public void scoreCat(TabbyCat target){
@@ -10,7 +10,8 @@ public class ScoreZone extends PhysObject {
   }//close scoreCat
   
   public void display() {
-     // meant to be empty so that program does not crash if Actor's display method run on SccoreZone
+     // empty so that program does not crash if Actor's display method run on SccoreZone
+     ellipse(position.x, position.y, 100, 100);
   }
 
 }
