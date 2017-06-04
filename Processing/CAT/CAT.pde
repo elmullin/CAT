@@ -10,31 +10,31 @@ PImage playerImg;
 Player player;
 
 public void setup(){
-   minim = new Minim(this);
-   LevelBuilder levelBuilder = new LevelBuilder();
-    // -- load images --
-    catgif = loadImage("/assets/cat.gif");
-    bg = loadImage("/assets/bg.png");
-    playerImg = loadImage("/assets/PlayerPlaceHolder.gif");
-   
-   world = levelBuilder.buildWorld(minim, catgif, bg, playerImg);
-   
-   player = (Player)(world.getActors(Player.class).get(0));
+	minim = new Minim(this);
+	LevelBuilder levelBuilder = new LevelBuilder();
+	
+	// load images
+	catgif = loadImage("/assets/cat.gif");
+	bg = loadImage("/assets/bg.png");
+	playerImg = loadImage("/assets/PlayerPlaceHolder.gif");
+	   
+	world = levelBuilder.buildWorld(minim, catgif, bg, playerImg);
+	player = (Player)(world.getActors(Player.class).get(0));
 }
 
 public void draw(){
-   imageMode(CENTER);
-    world.display();
+	imageMode(CENTER);
+	world.display();
 }
 
 public void settings(){
-    size(800, 600);
+	size(800, 600);
 }
 
 public void keyPressed() {
-   player.pressKey(key);
+	player.pressKey(key);
 }
 
 public void keyReleased() {
-   player.releaseKey(key);
+	player.releaseKey(key);
 }
