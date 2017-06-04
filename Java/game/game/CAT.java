@@ -13,6 +13,10 @@ public class CAT extends PApplet{
    PImage playerImg;
 
    Player player;
+   
+   public static void main(String [] args){
+      PApplet.main("CAT");
+   }
 
    public void setup(){
       minim = new Minim(this);
@@ -22,7 +26,7 @@ public class CAT extends PApplet{
       bg = loadImage("/assets/bg.png");
       playerImg = loadImage("/assets/PlayerPlaceHolder.png");
    
-      world = levelBuilder.buildWorld(minim, catgif, bg, playerImg);
+      world = levelBuilder.buildWorld(minim, catgif, bg, playerImg, this);
    
       player = (Player)(world.getActors(Player.class).get(0));
    }

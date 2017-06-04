@@ -1,6 +1,7 @@
 package game;
 
 import processing.core.*;
+import java.util.List;
 
 public abstract class PhysObject extends Actor{
     
@@ -12,6 +13,8 @@ public abstract class PhysObject extends Actor{
     
     boolean moveable;
     
+    PApplet parent;
+    
     
     /* CONSTRUCTORS */
     
@@ -19,36 +22,38 @@ public abstract class PhysObject extends Actor{
      * Full constructor.
      */
     public PhysObject(PImage image, float posX, float posY, float velX, float velY, 
-    float collisionRadius, boolean isMoveable){
+    float collisionRadius, boolean isMoveable, PApplet p){
         super(image, posX, posY);
         radius = collisionRadius;
         moveable = isMoveable;
         velocity = new PVector(velX, velY);
+        parent = p;
     }
     
     /**
      * Imageless constructor.
      */
     public PhysObject(float posX, float posY, float velX, float velY, 
-    float collisionRadius, boolean isMoveable){
+    float collisionRadius, boolean isMoveable, PApplet p){
         super(posX, posY);
         radius = collisionRadius;
         moveable = isMoveable;
         velocity = new PVector(velX, velY);
+        parent = p;
     }
     
     /**
      * No-velocity constructor.
      */
-    public PhysObject(PImage image, float posX, float posY, float collisionRadius, boolean isMoveable){
-        this(image, posX, posY, 0, 0, collisionRadius, isMoveable);
+    public PhysObject(PImage image, float posX, float posY, float collisionRadius, boolean isMoveable, PApplet p){
+        this(image, posX, posY, 0, 0, collisionRadius, isMoveable, p);
     }
     
     /**
      * No-image constructor.
      */
-    public PhysObject(float posX, float posY, float collisionRadius, boolean isMoveable){
-        this(posX, posY, 0, 0, collisionRadius, isMoveable);
+    public PhysObject(float posX, float posY, float collisionRadius, boolean isMoveable, PApplet p){
+        this(posX, posY, 0, 0, collisionRadius, isMoveable, p);
     }
     
     /* MOVEMENT */
@@ -120,7 +125,7 @@ public abstract class PhysObject extends Actor{
         
         if (distance < boundary) {
             if(obj.moveable){
-                PVector adjust = PVector.sub(position, obj.position).normalize().mult((boundary - distance) / 2.0);
+                PVector adjust = PVector.sub(position, obj.position).normalize().mult((float)((boundary - distance) / 2.0));
                 position.add(adjust);
                 obj.position.add(adjust);
             }
@@ -140,10 +145,10 @@ public abstract class PhysObject extends Actor{
         float bottom = wall.top - (position.y - radius);
         float left = wall.right - (position.x - radius);
         
-        float x = abs(left) < abs(right)? left : right;
-        float y = abs(top) < abs(bottom)? top : bottom;
+        float x = PApplet.abs(left) < PApplet.abs(right)? left : right;
+        float y = PApplet.abs(top) < PApplet.abs(bottom)? top : bottom;
         
-        if (abs(x) < abs(y)){
+        if (PApplet.abs(x) < PApplet.abs(y)){
             position.add(x, 0);
         }
         else {

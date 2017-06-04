@@ -27,17 +27,17 @@ public class TabbyCat extends PhysObject {
 
    // -------------------------------------------------------------------------
 
-   public TabbyCat(PImage image, float x, float y, Minim minim){
-      super(image, x, y, 0, 0, 1, true);
+   public TabbyCat(PImage image, float x, float y, Minim minim, PApplet p){
+      super(image, x, y, 0, 0, 1, true, p);
       catSounds = new Music(minim);
-      startTime = millis();
-      waitTime = random(5000) + 10000;
+      startTime = parent.millis();
+      waitTime = parent.random(5000) + 10000;
    }
 
    // -------------------------------------------------------------------------
    private void makeNoise() {
-      if (millis() >= startTime + waitTime) {
-         switch ((int)random(8) + 1) {
+      if (parent.millis() >= startTime + waitTime) {
+         switch ((int)parent.random(8) + 1) {
             case 1:
                catSounds.switchTrack(SOUND_1, false);
                break;
@@ -63,8 +63,8 @@ public class TabbyCat extends PhysObject {
                catSounds.switchTrack(SOUND_8, false);
                break;
          }
-         startTime = millis();
-         waitTime = random(5000) + 11000;
+         startTime = parent.millis();
+         waitTime = parent.random(5000) + 11000;
       }
    }
    

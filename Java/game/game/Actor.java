@@ -3,6 +3,9 @@ package game;
 import processing.core.*;
 
 public class Actor {
+	
+	PApplet parent;
+	
   
     // -- variables --
   
@@ -18,9 +21,10 @@ public class Actor {
     // -- constructors --
     
     // make actor with sprite
-    public Actor(PImage sprite) {
+    public Actor(PImage sprite, PApplet p) {
       this.sprite = sprite;
       position = new PVector(0,0);
+      parent = p;
     }
     
     // make actor in position
@@ -39,10 +43,10 @@ public class Actor {
     // display actor on screen
     public void display() {
       if (sprite != null) {
-        image(sprite, position.x, position.y);
+        parent.image(sprite, position.x, position.y);
         
       }
-      resetMatrix();
+      parent.resetMatrix();
     }
     
     // change location of actor
@@ -63,7 +67,7 @@ public class Actor {
     
     // scale sprite of actor by given factor
     void scaleImage(double factor) {
-      scaleImage((int) Math.round(factor * width), (int) Math.round(factor * height));
+      scaleImage((int) Math.round(factor * parent.width), (int) Math.round(factor * parent.height));
     }
     
     // returns world of this actors as a World
@@ -94,12 +98,12 @@ public class Actor {
       
     // returns width of actor
     int getWidth() {
-      return width;
+      return parent.width;
     }
       
     // returns height of actor
     int getHeight() {
-      return height;
+      return parent.height;
     }
       
     // returns sprite of actor
