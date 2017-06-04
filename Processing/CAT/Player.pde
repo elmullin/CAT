@@ -85,13 +85,13 @@ public class Player extends PhysObject {
       
       pushMatrix();
          rotate(mouseVector.heading());
+         super.display();
       popMatrix();
    }
 
    // -------------------------------------------------------------------------
 
    public void display() {
-      super.display();
       calculateVelocity();
       calculateImageAngle();
 
