@@ -85,7 +85,9 @@ public class Player extends PhysObject {
       
       pushMatrix();
          rotate(mouseVector.heading());
-         super.display();
+         translate(position.x, position.y);
+         
+         image(getImage(), 0, 0);
       popMatrix();
    }
 
@@ -96,6 +98,6 @@ public class Player extends PhysObject {
       calculateImageAngle();
 
       move();
-      //resetMatrix();
+      resetMatrix();
    }
 }
