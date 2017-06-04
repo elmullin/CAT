@@ -15,6 +15,12 @@ public class LevelBuilder {
        world.addActor(new TabbyCat(catgif, 50, 50, minim));
        world.addActor(new TabbyCat(catgif, 50, 50, minim));
        
+       // wall setup
+       world.addWall(new Wall(-2, -2, 802, 0));
+       world.addWall(new Wall(802, -2, 800, 602));
+       world.addWall(new Wall(802, 602, -2, 600));
+       world.addWall(new Wall(-2, 602, 0, -2));
+       
        return world;
    }
 }

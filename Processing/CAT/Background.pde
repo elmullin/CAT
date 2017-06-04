@@ -7,7 +7,7 @@ public class Background{
         
     public void display(){
         if (bg != null)
-          image(bg, 0, 0);
+          image(bg, 400, 300);
         resetMatrix();
     }
 }

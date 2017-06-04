@@ -23,6 +23,7 @@ public void setup(){
 }
 
 public void draw(){
+   imageMode(CENTER);
     world.display();
 }
 

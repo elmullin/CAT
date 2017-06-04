@@ -15,6 +15,9 @@ public class World {
     // array to hold actors
     ArrayList<Actor> actors = new ArrayList<Actor>();
     
+    // array to hold walls
+    ArrayList<Wall> walls = new ArrayList<Wall>();
+    
     // background image
     Background background;
 
@@ -42,11 +45,14 @@ public class World {
     
     // -- methods --
     
-    // call this each update to trigger actor updates
+    // call this each update to trigger actor and wall updates
     public void display() {
       background.display();
       for (Actor actor : actors) {
         actor.display();
+      }
+      for (Wall wall : walls) {
+         wall.display();  
       }
     }
     
@@ -74,5 +80,9 @@ public class World {
         if (actor.getClass().equals(subclass))
           filtered.add(actor);
       return filtered;
+    }
+    
+    public void addWall(Wall wall) {
+        walls.add(wall);  
     }
 }
