@@ -93,6 +93,10 @@ public abstract class PhysObject extends Actor{
         return amt;
     }
     
+    /**
+     * Sets the velocity vector
+     * Returns the new velocity vector
+     */
     public PVector setVelocity(PVector newVelocity) {
        velocity = newVelocity;
        return velocity;

@@ -2,7 +2,7 @@ public class Player extends PhysObject {
    /*
     * Constants
     */
-   private static final int MOVE_RATE = 100;
+   private static final int MOVE_RATE = 1;
    private static final char UP = 'w';
    private static final char LEFT = 'a';
    private static final char DOWN = 's';
@@ -18,7 +18,7 @@ public class Player extends PhysObject {
     */
    public Player(PImage sprite, int posX, int posY) {
       super(sprite, posX, posY, 0, 0, 1, true);
-      keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D
+      keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D, respectively
    }
 
    // -------------------------------------------------------------------------
@@ -26,7 +26,7 @@ public class Player extends PhysObject {
     * Overwrite default keyPressed() and keyReleased() to calculate new velocity vector
     * Called whenever a key is pressed or released, respectively
     */
-   public void pressKey(char key) {
+   public int[] pressKey(char key) {
       System.out.println("Pressed " + key);
       if (UP == key) {
          keysPressed[0] = -1 * MOVE_RATE;
@@ -40,9 +40,10 @@ public class Player extends PhysObject {
       if (RIGHT == key) {
          keysPressed[3] = MOVE_RATE;
       }
+      return keysPressed;
    }
 
-   public void releaseKey(char key) {
+   public int[] releaseKey(char key) {
       System.out.println("Released " + key);
       if (UP == key) {
          keysPressed[0] = 0;
@@ -56,26 +57,26 @@ public class Player extends PhysObject {
       if (RIGHT == key) {
          keysPressed[3] = 0;
       }
+      return keysPressed;
    }
 
    // -------------------------------------------------------------------------
 
-   private void calculateVelocityAngle() {
-      float tempAngle;
+   private void calculateVelocity() {
+      //float tempAngle;
+      PVector newVelocity;
+      /*System.out.println((keysPressed[1] + keysPressed[3]));
       if (0 != keysPressed[0] + keysPressed[2]) {
          tempAngle = atan((keysPressed[1] + keysPressed[3])/(keysPressed[0] + keysPressed[2]));
          if (keysPressed[1] + keysPressed[3] < 0) {
-            tempAngle += HALF_PI;
             tempAngle = -1 * tempAngle;
          }
       }
       else {
-         tempAngle = PI * (keysPressed[1] + keysPressed[3]);
-      }
-      
-      
-      
-      setAngle(tempAngle);
+         tempAngle = 0;
+      }*/
+      newVelocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
+      setVelocity(newVelocity);
    }
 
    private void calculateImageAngle() {
@@ -91,7 +92,7 @@ public class Player extends PhysObject {
 
    public void display() {
       super.display();
-      calculateVelocityAngle();
+      calculateVelocity();
       calculateImageAngle();
 
       move();
