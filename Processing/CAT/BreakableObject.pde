@@ -1,4 +1,4 @@
-public class BreakableObject extends PhysObject {
+public class BreakableObject extends Actor {
 
 	private int value; // the cost of the object
 	

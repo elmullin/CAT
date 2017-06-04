@@ -1,4 +1,4 @@
-public class TabbyCat extends PhysObject {
+public class TabbyCat extends Actor {
 	/*
 	 * Constants
 	 */

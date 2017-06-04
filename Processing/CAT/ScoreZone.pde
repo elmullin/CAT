@@ -1,7 +1,7 @@
-public class ScoreZone extends PhysObject {
+public class ScoreZone extends Actor {
 	
-	public ScoreZone(float x, float y, float radius){
-		super(x, y, radius, false);
+	public ScoreZone(PImage sprite, float x, float y, float radius){
+		super(sprite, x, y, radius, false);
 	}
 	
 	public void scoreCat(TabbyCat target){
@@ -11,7 +11,7 @@ public class ScoreZone extends PhysObject {
 	
 	public void display() {
 		 // empty so that program does not crash if Actor's display method run on SccoreZone
-		 ellipse(position.x, position.y, 100, 100);
+		 ellipse(super.position.x, super.position.y, 100, 100);
 	}
 
 }

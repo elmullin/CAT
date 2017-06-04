@@ -1,10 +1,12 @@
-public abstract class PhysObject extends Actor{
+public abstract class PhysObject{
+    
+    protected PVector position;
 	
 	// A vector describing the object's movement
-	protected PVector velocity;
+	PVector velocity;
 	
 	// the collision radius
-	protected float radius;
+	float radius;
 	
 	boolean moveable;
 	
@@ -14,34 +16,16 @@ public abstract class PhysObject extends Actor{
 	/**
 	 * Full constructor.
 	 */
-	public PhysObject(PImage image, float posX, float posY, float velX, float velY, 
-	float collisionRadius, boolean isMoveable){
-		super(image, posX, posY);
-		radius = collisionRadius;
-		moveable = isMoveable;
-		velocity = new PVector(velX, velY);
-	}
-	
-	/**
-	 * Imageless constructor.
-	 */
 	public PhysObject(float posX, float posY, float velX, float velY, 
 	float collisionRadius, boolean isMoveable){
-		super(posX, posY);
 		radius = collisionRadius;
 		moveable = isMoveable;
+		position = new PVector(posX, posY);
 		velocity = new PVector(velX, velY);
 	}
 	
 	/**
 	 * No-velocity constructor.
-	 */
-	public PhysObject(PImage image, float posX, float posY, float collisionRadius, boolean isMoveable){
-		this(image, posX, posY, 0, 0, collisionRadius, isMoveable);
-	}
-	
-	/**
-	 * No-image constructor.
 	 */
 	public PhysObject(float posX, float posY, float collisionRadius, boolean isMoveable){
 		this(posX, posY, 0, 0, collisionRadius, isMoveable);

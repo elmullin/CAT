@@ -1,6 +1,4 @@
-//import processing.core.*;
-
-public class Actor {
+public class Actor extends PhysObject{
   
 	// -- variables --
   
@@ -11,26 +9,24 @@ public class Actor {
 	private PImage sprite;
 	
 	// points from 0,0 to the object's location
-	protected PVector position;
+	private PVector position;
 	
 	// -- constructors --
-	
-	// make actor with sprite
-	public Actor(PImage sprite) {
-		this.sprite = sprite;
-		position = new PVector(0,0);
-	}
-	
-	// make actor in position
-	public Actor(float x, float y) {
-		position = new PVector(x, y);
-	}
-	
+
 	// make actor in position with sprite
-	public Actor(PImage sprite, float x, float y) {
-		this.sprite = sprite;
-		position = new PVector(x, y);
-	}
+    public Actor(PImage sprite, float posX, float posY, float velX, float velY, 
+    float radius, boolean moveable) {
+        super(posX, posY, velX, velY, radius, moveable);
+        this.sprite = sprite;
+    }
+    
+    public Actor(PImage sprite, float posX, float posY, float radius, boolean moveable) {
+        this(sprite, posX, posY, 0, 0, radius, moveable);
+    }
+    
+    public Actor(PImage sprite, float posX, float posY) {
+        this(sprite, posX, posY, 0, 0, 0, false);
+    }
 	
 	// -- methods --
 	
@@ -40,12 +36,6 @@ public class Actor {
 			image(sprite, position.x, position.y);
 		}
 		resetMatrix();
-	}
-	
-	// change location of actor
-	void setLocation(int x, int y) {
-		position.x = x;
-		position.y = y;
 	}
 	
 	// change sprite of actor

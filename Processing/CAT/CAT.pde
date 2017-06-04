@@ -3,9 +3,10 @@ import ddf.minim.*;
 private World world;
 private Minim minim;
 
-PImage catgif;
-PImage bg;
+PImage catImg;
+PImage bgImg;
 PImage playerImg;
+PImage scoreZoneImg;
 
 Player player;
 
@@ -14,11 +15,12 @@ public void setup(){
 	LevelBuilder levelBuilder = new LevelBuilder();
 	
 	// load images
-	catgif = loadImage("/assets/cat.gif");
 	bg = loadImage("/assets/bg.png");
+	catImg = loadImage("/assets/cat.gif");
 	playerImg = loadImage("/assets/PlayerPlaceHolder.gif");
+	scoreZoneImg = loadImage("/assets/scorezone.png");
 	   
-	world = levelBuilder.buildWorld(minim, catgif, bg, playerImg);
+	world = levelBuilder.buildWorld(minim, catImg, bgImg, playerImg);
 	player = (Player)(world.getActors(Player.class).get(0));
 }
 

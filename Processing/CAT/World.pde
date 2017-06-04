@@ -17,16 +17,11 @@ public class World {
 	
 	// -- constructors --
 	
-	// default constructor
-	public World(Minim minim) {
-		music = new Music(minim);
-		music.switchTrack(LEVEL_MUSIC, true);
-	}
-	
 	// make world with background and default dimensions
 	public World(Background background, Minim minim) {
 		this.background = background;
-		this(minim);
+		music = new Music(minim);
+        music.switchTrack(LEVEL_MUSIC, true);
 	}
 	
 	// -- methods --

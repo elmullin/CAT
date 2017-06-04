@@ -1,4 +1,4 @@
-public class Player extends PhysObject {
+public class Player extends Actor {
 	/*
 	 * Constants
 	 */
@@ -68,9 +68,9 @@ public class Player extends PhysObject {
 		
 		move();
 		
-		translate(position.x, position.y);
+		translate(super.position.x, super.position.y);
 		mouseVector.set(mouseX, mouseY);
-		mouseVector.sub(position);
+		mouseVector.sub(super.position);
 		rotate(mouseVector.heading());
 		image(getImage(), 0, 0);  
 		
