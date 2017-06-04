@@ -62,23 +62,6 @@ public class Player extends PhysObject {
 
    // -------------------------------------------------------------------------
 
-   private void calculateVelocity() {
-      //float tempAngle;
-      PVector newVelocity;
-      /*System.out.println((keysPressed[1] + keysPressed[3]));
-      if (0 != keysPressed[0] + keysPressed[2]) {
-         tempAngle = atan((keysPressed[1] + keysPressed[3])/(keysPressed[0] + keysPressed[2]));
-         if (keysPressed[1] + keysPressed[3] < 0) {
-            tempAngle = -1 * tempAngle;
-         }
-      }
-      else {
-         tempAngle = 0;
-      }*/
-      newVelocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
-      setVelocity(newVelocity);
-   }
-
    private void calculateImageAngle() {
       PVector mouseVector = new PVector(mouseX, mouseY);
       mouseVector.sub(position);
@@ -94,9 +77,9 @@ public class Player extends PhysObject {
    // -------------------------------------------------------------------------
 
    public void display() {
-      calculateVelocity();
-      calculateImageAngle();
-
+      velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
+      //calculateImageAngle();
+      super.display(); // TODO: delete this once fix rotation
       move();
       resetMatrix();
    }
