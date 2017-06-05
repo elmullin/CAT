@@ -25,4 +25,8 @@ public class Music {
 		   player.loop();
 		}
 	}
+
+    public void setVolume(float amount) {
+        player.setVolume(.5);   
+    }
 }

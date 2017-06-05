@@ -28,7 +28,6 @@ public class LevelBuilder {
 		world.addWall(new Wall(300, 100, 250, 350));
 
 		// actor setup
-		world.addActor(player);
 		
 		world.addActor(new TabbyCat(catImg, 400, 300, minim));
 		world.addActor(new TabbyCat(catImg, 200, 50, minim));
@@ -39,6 +38,8 @@ public class LevelBuilder {
         world.addActor(new BreakableObject(5000, null, 475, 425, 25));
 
 		world.addActor(new ScoreZone(scoreZoneImg, 750, 600, 50));
+
+        world.addActor(player);
 		
 		return world;
 	}
