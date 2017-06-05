@@ -28,7 +28,7 @@ public class TabbyCat extends Actor {
 	// -------------------------------------------------------------------------
 
 	public TabbyCat(PImage image, float x, float y, Minim minim){
-		super(image, x, y, 0, 0, 1, true);
+		super(image, x, y, 0, 0, 20, true);
 		catSounds = new Music(minim);
 		startTime = millis();
 		waitTime = random(5000) + 10000;
@@ -69,8 +69,8 @@ public class TabbyCat extends Actor {
 	}
 
 	public void changeDir(){
-   	position = PVector.random2D();
-   	position.mult(CATSPEED);
+   	velocity = PVector.random2D();
+   	velocity.mult(CATSPEED);
 	}//close changeDir
 
 	public void pathing(){
@@ -108,6 +108,7 @@ public class TabbyCat extends Actor {
 
 	public void display() {
    	pathing();
+   	move();
 		super.display();
 		makeNoise();
 	}//close display
