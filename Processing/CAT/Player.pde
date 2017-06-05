@@ -19,7 +19,7 @@ public class Player extends Actor {
 	 * Constructor. Creates a new object at the given location.
 	 */
 	public Player(PImage sprite, int posX, int posY) {
-		super(sprite, posX, posY, 0, 0, 1, true);
+		super(sprite, posX, posY, 0, 0, 20, true);
 		mouseVector = new PVector(0, 0);
 		keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D, respectively
 	}
@@ -68,13 +68,14 @@ public class Player extends Actor {
 		
 		move();
 		
-
+		//TODO: maybe broken?
 		for(Actor a : world.getActors(TabbyCat.class)){
 			collide(a);
 		}
-		for(Wall w : world.getWalls()){
+		//TODO: broken
+		/*for(Wall w : world.getWalls()){
     		collide(w);
-		}
+		}*/
 		
 		translate(position.x, position.y);
 		mouseVector.set(mouseX, mouseY);

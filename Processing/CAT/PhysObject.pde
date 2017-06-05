@@ -96,7 +96,7 @@ public abstract class PhysObject{
 			if(obj.moveable){
 				PVector adjust = PVector.sub(position, obj.position).normalize().mult((boundary - distance) / 2.0);
 				position.add(adjust);
-				obj.position.add(adjust);
+				obj.position.sub(adjust);
 			}
 			else {
 				position.add(PVector.sub(position, obj.position).normalize().mult(boundary - distance));
@@ -111,6 +111,7 @@ public abstract class PhysObject{
 	 * note: if this isn't working, try flipping wall.x and ()
 	 */
 	public void collide(Wall wall){
+        
 		float top = wall.bottom - (position.y + radius);
 		float right = wall.left - (position.x + radius);
 		float bottom = wall.top - (position.y - radius);
