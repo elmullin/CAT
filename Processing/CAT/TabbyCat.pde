@@ -70,6 +70,7 @@ public class TabbyCat extends Actor {
 	}
 
 	public void flee(){
+   	moving = true;
    	velocity = PVector.sub(position, world.player.position);
    	velocity.normalize().mult(CATSPEED);
 	}

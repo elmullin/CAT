@@ -20,6 +20,7 @@ public class World {
 	// make world with background and default dimensions
 	public World(Background background, Minim minim, Player player) {
 		this.background = background;
+		this.player = player;
 		music = new Music(minim);
         music.switchTrack(LEVEL_MUSIC, true);
 	}
