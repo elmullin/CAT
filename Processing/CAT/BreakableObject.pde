@@ -11,7 +11,13 @@ public class BreakableObject extends Actor {
 	* Called by a player or cat if they collide with this object
 	*/
 	public void breakObject() {
+        System.out.println("Broke");
 		getWorld().score.incrementObjectsBroken(value);
 		getWorld().removeActor(this);
 	}
+
+    public void display() {
+       fill(255);
+       ellipse(position.x, position.y, radius, radius);
+    }
 }

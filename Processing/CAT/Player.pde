@@ -72,6 +72,9 @@ public class Player extends Actor {
 		for(Actor a : world.getActors(TabbyCat.class)){
 			collide(a);
 		}
+        for (Actor a : world.getActors(BreakableObject.class)) {
+            collide((BreakableObject)a);   
+        }
 		//TODO: broken
 		/*for(Wall w : world.getWalls()){
     		collide(w);
@@ -85,4 +88,10 @@ public class Player extends Actor {
 		
 		resetMatrix();
 	}
+
+    //override collide for breakable object BROKEN?
+    public void collide(BreakableObject broke){
+        super.collide(broke);
+        broke.breakObject();
+    }
 }
