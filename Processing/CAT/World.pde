@@ -11,6 +11,7 @@ public class World {
 	Player player;
 	ArrayList<Actor> actors = new ArrayList<Actor>();
 	ArrayList<Wall> walls = new ArrayList<Wall>();
+    ArrayList<Actor> deletionList = new ArrayList<Actor>();
 	Background background;
 	Music music;
 	public Score score;
@@ -37,8 +38,13 @@ public class World {
 			wall.display();
 		}
 		for (Actor actor : actors) {
-			actor.display();
+			if (actor.display()) {
+                deletionList.add(actor);
+            }
 		}
+        for (int i = 0; i < deletionList.size(); i++) {
+            removeActor(deletionList.get(0));
+        }
 	}
 	
 	// add an actor to the list of updating actors

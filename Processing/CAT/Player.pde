@@ -63,7 +63,7 @@ public class Player extends Actor {
 
    // -------------------------------------------------------------------------
    
-	public void display() {
+	public boolean display() {
 		velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
 		
 		move();
@@ -87,11 +87,13 @@ public class Player extends Actor {
 		image(getImage(), 0, 0);  
 		
 		resetMatrix();
+        return false;
 	}
 
     //override collide for breakable object BROKEN?
     public void collide(BreakableObject broke){
         super.collide(broke);
+        System.out.println("PlayerBroke");
         broke.breakObject();
     }
 }

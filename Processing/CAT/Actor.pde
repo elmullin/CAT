@@ -7,6 +7,9 @@ public class Actor extends PhysObject{
 	
 	// sprite of actor
 	private PImage sprite;
+
+    // deletion marker
+    protected boolean deletionMark; 
 	
 	// -- constructors --
 
@@ -15,24 +18,28 @@ public class Actor extends PhysObject{
     float radius, boolean moveable) {
         super(posX, posY, velX, velY, radius, moveable);
         this.sprite = sprite;
+        deletionMark = false;
     }
     
     public Actor(PImage sprite, float posX, float posY, float radius, boolean moveable) {
         this(sprite, posX, posY, 0, 0, radius, moveable);
+        deletionMark = false;
     }
     
     public Actor(PImage sprite, float posX, float posY) {
         this(sprite, posX, posY, 0, 0, 0, false);
+        deletionMark = false;
     }
 	
 	// -- methods --
 	
 	// display actor on screen
-	public void display() {
+	public boolean display() {
 		if (sprite != null) {
 			image(sprite, position.x, position.y);
 		}
 		resetMatrix();
+        return false;
 	}
 	
 	// change sprite of actor
@@ -90,4 +97,8 @@ public class Actor extends PhysObject{
 	public PImage getImage() {
 		return sprite; 
 	}
+
+    public void markDelete() {
+        deletionMark = true;   
+    }
 }

@@ -123,12 +123,13 @@ public class TabbyCat extends Actor {
 		goal.scoreCat(this);
 	}//close collide ScoreZone
 
-	public void display() {
-   	pathing();
-   	if(moving){
-   		move();
-   	}
+	public boolean display() {
+       	pathing();
+   	    if(moving){
+   		    move();
+   	    }
 		super.display();
 		makeNoise();
+        return false;
 	}//close display
 }
