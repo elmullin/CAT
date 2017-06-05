@@ -2,10 +2,11 @@ import ddf.minim.*;
 
 public class LevelBuilder {
 	public World buildWorld(Minim minim, PImage bgImg, PImage playerImg, PImage catImg, PImage scoreZoneImg) {
+        Player player = new Player(playerImg, 50, 50); // passed into world, actor list
 		//world setup
 		surface.setResizable(false);
 	
-		World world = new World(new Background(bgImg), minim);
+		World world = new World(new Background(bgImg), minim, player);
 		
 		/*
 		 * Wall setup
@@ -27,13 +28,15 @@ public class LevelBuilder {
 		world.addWall(new Wall(300, 100, 250, 350));
 
 		// actor setup
-		world.addActor(new Player(playerImg, 50, 50));
+		world.addActor(player);
 		
 		world.addActor(new TabbyCat(catImg, 400, 300, minim));
 		world.addActor(new TabbyCat(catImg, 200, 50, minim));
 		world.addActor(new TabbyCat(catImg, 300, 550, minim));
 		world.addActor(new TabbyCat(catImg, 50, 200, minim));
 		world.addActor(new TabbyCat(catImg, 750, 50, minim));
+
+        world.addActor(new BreakableObject(5000, null, 475, 425, 25));
 
 		world.addActor(new ScoreZone(scoreZoneImg, 750, 600, 50));
 		
