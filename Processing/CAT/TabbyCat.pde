@@ -110,10 +110,18 @@ public class TabbyCat extends Actor {
       	alone();
    	}
 	}
+
+    public void scoreCat() {
+        world.getScore().incrementCatsCorralled();   
+        markDelete();
+    }
 	
 	public void extraEffect(PhysObject obj) {
         if (obj instanceof BreakableObject) {
             ((BreakableObject)obj).breakObject();
+        }
+        else if (obj instanceof ScoreZone) {
+            scoreCat();   
         }
     }
 	
@@ -130,6 +138,6 @@ public class TabbyCat extends Actor {
    	    }
 		super.display();
 		makeNoise();
-        return false;
+        return deletionMark;
 	}//close display
 }
