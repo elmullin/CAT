@@ -11,8 +11,8 @@ public class TabbyCat extends Actor {
 	private static final String SOUND_7 = "/assets/Cat_Meow_7.mp3";
 	private static final String SOUND_8 = "/assets/Cat_Purr_1.mp3";
 
-	private static final int CATSPEED = 2; //speed of cats movement per 
-	private static final int FLEERAD = 50;
+	private static final int CATSPEED = 1; //speed of cats movement per 
+	private static final int FLEERAD = 100;
 	private static final int CMC = 10; //1 in X chance each second for moving state to change
    private static final int CDC = 5; //in in X chance each second to change direction while moving
 
@@ -103,7 +103,8 @@ public class TabbyCat extends Actor {
 	}//close pathing
 
 	public void pathing(){
-   	if(dist(getWorld().player.position.x, position.x, getWorld().player.position.y, position.y) <= FLEERAD){
+   
+   	if(dist(getWorld().player.position.x, getWorld().player.position.y, position.x, position.y) <= FLEERAD){
       	flee();
    	}else{
       	alone();
@@ -124,7 +125,9 @@ public class TabbyCat extends Actor {
 
 	public void display() {
    	pathing();
-   	move();
+   	if(moving){
+   		move();
+   	}
 		super.display();
 		makeNoise();
 	}//close display
