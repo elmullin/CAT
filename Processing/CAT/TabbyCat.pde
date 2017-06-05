@@ -11,6 +11,9 @@ public class TabbyCat extends Actor {
 	private static final String SOUND_7 = "/assets/Cat_Meow_7.mp3";
 	private static final String SOUND_8 = "/assets/Cat_Purr_1.mp3";
 
+	private static final int CATSPEED = 2; //speed of cats movement per frame
+	private static final int CMC = 10; //1 in X chance each second for moving state to change
+   private static final int CDC = 5; //in in X chance each second to change direction while moving
 
 	/*
 	 * Fields
@@ -19,6 +22,8 @@ public class TabbyCat extends Actor {
 	private int startTime;
 	private float waitTime;
 
+	private boolean moving = false;
+	private int lastSec = 0;
 
 	// -------------------------------------------------------------------------
 
@@ -62,21 +67,48 @@ public class TabbyCat extends Actor {
 			waitTime = random(5000) + 11000;
 		}
 	}
+
+	public void changeDir(){
+   	position = PVector.random2D();
+   	position.mult(CATSPEED);
+	}//close changeDir
+
+	public void pathing(){
+   	int curSec = second();
+   
+   	if(curSec != lastSec){
+      	lastSec = curSec;
+      
+      	if(int(random(CMC)) == 0){
+         	moving = !moving;
+         	if(moving){
+            	changeDir();
+         	}//close if moving
+      	}//close if changing move state
+      
+      	if(moving){
+         	if(int(random(CDC)) == 0){
+            	changeDir();
+         	}//close if changing direction
+      	}//close if moving
+   	}//close timing if
+	}//close pathing
 	
-	//override collide for breakable object
+	//override collide for breakable object BROKEN?
 	public void collide(BreakableObject broke){
 		super.collide(broke);
 		broke.breakObject();
 	}
 	
-	//override collide for ScoreZones
+	//override collide for ScoreZones BROKEN?
 	public void collide(ScoreZone goal){
 		super.collide(goal);
 		goal.scoreCat(this);
-	}
+	}//close collide ScoreZone
 
 	public void display() {
+   	pathing();
 		super.display();
 		makeNoise();
-	}
+	}//close display
 }
