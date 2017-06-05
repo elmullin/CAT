@@ -19,7 +19,7 @@ public class Player extends Actor {
 	 * Constructor. Creates a new object at the given location.
 	 */
 	public Player(PImage sprite, int posX, int posY) {
-		super(sprite, posX, posY, 0, 0, 20, true);
+		super(sprite, posX, posY, 0, 0, 25, true);
 		mouseVector = new PVector(0, 0);
 		keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D, respectively
 	}
@@ -43,7 +43,7 @@ public class Player extends Actor {
 			keysPressed[3] = MOVE_RATE;
 		}
 		return keysPressed;
-   }
+	}
 
 	public int[] releaseKey(char key) {
 		if (UP == key) {
@@ -59,41 +59,41 @@ public class Player extends Actor {
 			keysPressed[3] = 0;
 		}
 		return keysPressed;
-   }
+	}
 
-   // -------------------------------------------------------------------------
-   
+	// -------------------------------------------------------------------------
+	
 	public boolean display() {
 		velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
 		
 		move();
 		
-		//TODO: maybe broken?
 		for(Actor a : world.getActors(TabbyCat.class)){
 			collide(a);
 		}
-        for (Actor a : world.getActors(BreakableObject.class)) {
-            collide((BreakableObject)a);   
-        }
+		for (Actor a : world.getActors(BreakableObject.class)) {
+			collide((BreakableObject)a);
+		}
+		
 		//TODO: broken
-		/*for(Wall w : world.getWalls()){
-    		collide(w);
-		}*/
+		for(Wall w : world.getWalls()){
+			collide(w);
+		}
 		
 		translate(position.x, position.y);
 		mouseVector.set(mouseX, mouseY);
 		mouseVector.sub(position);
 		rotate(mouseVector.heading());
-		image(getImage(), 0, 0);  
+		image(getImage(), 0, 0);
 		
 		resetMatrix();
-        return deletionMark; // should always be false
+		return deletionMark; // should always be false
 	}
 
-    //override collide for breakable object BROKEN?
-    public void extraEffect(PhysObject obj) {
-        if (obj instanceof BreakableObject) {
-            ((BreakableObject)obj).breakObject();
-        }
-    }
+	//override collide for breakable object BROKEN?
+	public void extraEffect(PhysObject obj) {
+		if (obj instanceof BreakableObject) {
+			((BreakableObject)obj).breakObject();
+		}
+	}
 }

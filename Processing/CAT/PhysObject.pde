@@ -1,6 +1,6 @@
 public abstract class PhysObject{
-    
-    protected PVector position;
+	
+	protected PVector position;
 	
 	// A vector describing the object's movement
 	PVector velocity;
@@ -101,32 +101,42 @@ public abstract class PhysObject{
 			else {
 				position.add(PVector.sub(position, obj.position).normalize().mult(boundary - distance));
 			}
-            extraEffect(obj);
+			extraEffect(obj);
 		}
 	}
 	
 	/* collsion for a wall and a round object
 	 * note: this could probably be optimized
-	 * note: if this isn't working, try flipping wall.x and ()
 	 */
 	public void collide(Wall wall){
-        
-		float top = wall.bottom - (position.y + radius);
-		float right = wall.left - (position.x + radius);
-		float bottom = wall.top - (position.y - radius);
-		float left = wall.right - (position.x - radius);
+
+		float myTop = position.y - radius;
+		float myRight = position.x + radius;
+		float myBottom = position.y + radius;
+		float myLeft = position.x - radius;
 		
-		float x = abs(left) < abs(right)? left : right;
-		float y = abs(top) < abs(bottom)? top : bottom;
+		// negative is a collision; positive is null
+		float top = min(myTop - wall.bottom, 0);
+		float left = min(myLeft - wall.right, 0);
+
+		// positive is a collision; negative is null
+		float right = max(myRight - wall.left, 0);
+		float bottom = max(myBottom - wall.top, 0);
 		
-		if (abs(x) < abs(y)){
-			position.add(x, 0);
-		}
-		else {
-			position.add(0, y);
+		if (top != 0
+		 && left != 0
+		 && right != 0
+		 && bottom != 0){
+			float y = (abs(top) < abs(bottom)) ? top : bottom;
+			float x = (abs(left) < abs(right)) ? left : right;
+			if (abs(x) < abs(y)){
+				position.x -= x;
+			}
+			else {
+				position.y -= y;
+			}
 		}
 	}
-	
 	
 	/**
 	 * Checks whether this collides with the given PhysObject
@@ -143,17 +153,19 @@ public abstract class PhysObject{
 	 */
 	public boolean isIntersecting(Wall wall){
 		
-		//double check your math here >>;
+		float myTop = position.y - radius;
+		float myRight = position.x + radius;
+		float myBottom = position.y + radius;
+		float myLeft = position.x - radius;
 		
-		if (wall.bottom < (position.y - radius)
-		 || wall.left < (position.x + radius)
-		 || wall.top > (position.y + radius)
-		 || wall.right > (position.x - radius)){
-			 return false;
-		 }
+		if ((myLeft < wall.right)
+		 && (wall.left < myRight)
+		 && (myTop < wall.bottom)
+		 && (wall.top < myBottom)){
+			 return true;
+		}
 		else{
-			return true;
-			//TODO - this actually means the box is inside the other box, double check closest corner
+			return false;
 		}
 	}
 }

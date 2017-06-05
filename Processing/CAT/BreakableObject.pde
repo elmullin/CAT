@@ -15,12 +15,12 @@ public class BreakableObject extends Actor {
 		markDelete();
 	}
 
-    public boolean display() {
-       if (deletionMark) {
-           return deletionMark;   
-       }
-       fill(255);
-       ellipse(position.x, position.y, radius, radius);
-       return deletionMark;
-    }
+	public boolean display() {
+		if (deletionMark) {
+			return deletionMark;
+		}
+		fill(255);
+		ellipse(position.x, position.y, radius, radius);
+		return deletionMark;
+	}
 }

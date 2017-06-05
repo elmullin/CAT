@@ -19,8 +19,8 @@ public void setup(){
 	catImg = loadImage("/assets/cat.gif");
 	playerImg = loadImage("/assets/PlayerPlaceHolder.gif");
 	scoreZoneImg = loadImage("/assets/scorezone.png");
-	   
-	world = levelBuilder.buildWorld(minim, bgImg, playerImg, catImg, catImg); //TODO replace with scorezone
+	
+	world = levelBuilder.buildWorld(minim, bgImg, playerImg, catImg, scoreZoneImg);
 	player = (Player)(world.getActors(Player.class).get(0));
 }
 

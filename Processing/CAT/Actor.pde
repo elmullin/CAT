@@ -1,35 +1,35 @@
 public class Actor extends PhysObject{
-  
+	
 	// -- variables --
-  
+	
 	// world actor belongs to
 	private World world;
 	
 	// sprite of actor
 	private PImage sprite;
 
-    // deletion marker
-    protected boolean deletionMark; 
+	// deletion marker
+	protected boolean deletionMark; 
 	
 	// -- constructors --
 
 	// make actor in position with sprite
-    public Actor(PImage sprite, float posX, float posY, float velX, float velY, 
-    float radius, boolean moveable) {
-        super(posX, posY, velX, velY, radius, moveable);
-        this.sprite = sprite;
-        deletionMark = false;
-    }
-    
-    public Actor(PImage sprite, float posX, float posY, float radius, boolean moveable) {
-        this(sprite, posX, posY, 0, 0, radius, moveable);
-        deletionMark = false;
-    }
-    
-    public Actor(PImage sprite, float posX, float posY) {
-        this(sprite, posX, posY, 0, 0, 0, false);
-        deletionMark = false;
-    }
+	public Actor(PImage sprite, float posX, float posY, float velX, float velY, 
+	float radius, boolean moveable) {
+		super(posX, posY, velX, velY, radius, moveable);
+		this.sprite = sprite;
+		deletionMark = false;
+	}
+
+	public Actor(PImage sprite, float posX, float posY, float radius, boolean moveable) {
+		this(sprite, posX, posY, 0, 0, radius, moveable);
+		deletionMark = false;
+	}
+
+	public Actor(PImage sprite, float posX, float posY) {
+		this(sprite, posX, posY, 0, 0, 0, false);
+		deletionMark = false;
+	}
 	
 	// -- methods --
 	
@@ -39,7 +39,7 @@ public class Actor extends PhysObject{
 			image(sprite, position.x, position.y);
 		}
 		resetMatrix();
-        return deletionMark;
+		return deletionMark;
 	}
 	
 	// change sprite of actor
@@ -64,7 +64,7 @@ public class Actor extends PhysObject{
 	
 	// sets the world this actor is in
 	public void setWorld(World world) {
-	  this.world = world;
+		this.world = world;
 	}
 	
 	// removes actor from world
@@ -87,7 +87,7 @@ public class Actor extends PhysObject{
 	int getWidth() {
 		return width;
 	}
-	  
+	
 	// returns height of actor
 	int getHeight() {
 		return height;
@@ -98,7 +98,7 @@ public class Actor extends PhysObject{
 		return sprite; 
 	}
 
-    public void markDelete() {
-        deletionMark = true;   
-    }
+	public void markDelete() {
+		deletionMark = true;
+	}
 }

@@ -10,7 +10,7 @@ public class Music {
 	// -------------------------------------------------------------------------
 
 	public Music(Minim minim){
-	   this.minim = minim;
+		this.minim = minim;
 	}
 
 	// -------------------------------------------------------------------------
@@ -22,7 +22,7 @@ public class Music {
 		player = minim.loadFile(track);
 		player.play();
 		if (loop) {
-		   player.loop();
+			player.loop();
 		}
 	}
 }
