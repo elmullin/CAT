@@ -16,7 +16,6 @@ public class BreakableObject extends Actor {
 	}
 
     public boolean display() {
-        System.out.println(deletionMark);
        if (deletionMark) {
            return deletionMark;   
        }

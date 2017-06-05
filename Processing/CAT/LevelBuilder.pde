@@ -29,11 +29,11 @@ public class LevelBuilder {
 
 		// actor setup
 		
-		/*world.addActor(new TabbyCat(catImg, 400, 300, minim));
+		world.addActor(new TabbyCat(catImg, 400, 300, minim));
 		world.addActor(new TabbyCat(catImg, 200, 50, minim));
 		world.addActor(new TabbyCat(catImg, 300, 550, minim));
 		world.addActor(new TabbyCat(catImg, 50, 200, minim));
-		world.addActor(new TabbyCat(catImg, 750, 50, minim));*/
+		world.addActor(new TabbyCat(catImg, 750, 50, minim));
 
         world.addActor(new BreakableObject(5000, null, 475, 425, 25));
 

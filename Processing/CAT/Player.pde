@@ -91,9 +91,9 @@ public class Player extends Actor {
 	}
 
     //override collide for breakable object BROKEN?
-    public void collide(BreakableObject broke){
-        super.collide(broke);
-        System.out.println("PlayerBroke");
-        broke.breakObject();
+    public void extraEffect(PhysObject obj) {
+        if (obj instanceof BreakableObject) {
+            ((BreakableObject)obj).breakObject();
+        }
     }
 }

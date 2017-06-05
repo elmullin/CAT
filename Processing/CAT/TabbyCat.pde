@@ -111,11 +111,11 @@ public class TabbyCat extends Actor {
    	}
 	}
 	
-	//override collide for breakable object BROKEN?
-	public void collide(BreakableObject broke){
-		super.collide(broke);
-		broke.breakObject();
-	}
+	public void extraEffect(PhysObject obj) {
+        if (obj instanceof BreakableObject) {
+            ((BreakableObject)obj).breakObject();
+        }
+    }
 	
 	//override collide for ScoreZones BROKEN?
 	public void collide(ScoreZone goal){

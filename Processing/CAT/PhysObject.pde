@@ -82,7 +82,7 @@ public abstract class PhysObject{
 	/**
 	 * Empty method -- override to add additional effects on collide.
 	 */
-	public void extraEffect(){}
+	public void extraEffect(PhysObject obj){}
 	
 	/**
 	 * Checks whether this collides with the given PhysObject.
@@ -101,9 +101,8 @@ public abstract class PhysObject{
 			else {
 				position.add(PVector.sub(position, obj.position).normalize().mult(boundary - distance));
 			}
+            extraEffect(obj);
 		}
-
-		extraEffect();
 	}
 	
 	/* collsion for a wall and a round object
