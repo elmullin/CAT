@@ -23,6 +23,9 @@ public class World {
 		this.player = player;
 		music = new Music(minim);
         music.switchTrack(LEVEL_MUSIC, true);
+        music.setVolume(.5);
+        this.player = player;
+        score = new Score();
 	}
 	
 	// -- methods --
