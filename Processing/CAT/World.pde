@@ -41,7 +41,7 @@ public class World {
                 deletionList.add(actor);
             }
 		}
-        for (int i = 0; i < deletionList.size(); i++) {
+        while (deletionList.size() > 0) {
             removeActor(deletionList.get(0));
         }
 	}
