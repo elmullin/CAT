@@ -14,7 +14,7 @@ public class World {
     ArrayList<Actor> deletionList = new ArrayList<Actor>();
 	Background background;
 	Music music;
-	public Score score;
+	private Score score;
 	
 	// -- constructors --
 	
@@ -80,5 +80,9 @@ public class World {
 
 	public List<Wall> getWalls() {
         return walls;
+    }
+    
+    public Score getScore() {
+        return score;   
     }
 }

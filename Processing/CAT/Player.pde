@@ -87,7 +87,7 @@ public class Player extends Actor {
 		image(getImage(), 0, 0);  
 		
 		resetMatrix();
-        return false;
+        return deletionMark; // should always be false
 	}
 
     //override collide for breakable object BROKEN?

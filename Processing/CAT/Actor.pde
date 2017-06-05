@@ -39,7 +39,7 @@ public class Actor extends PhysObject{
 			image(sprite, position.x, position.y);
 		}
 		resetMatrix();
-        return false;
+        return deletionMark;
 	}
 	
 	// change sprite of actor
