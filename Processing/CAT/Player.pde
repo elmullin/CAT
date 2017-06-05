@@ -66,7 +66,15 @@ public class Player extends Actor {
 	public void display() {
 		velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
 		
-		super.move();
+		move();
+		
+
+		for(Actor a : world.getActors(TabbyCat.class)){
+			collide(a);
+		}
+		for(Wall w : world.getWalls()){
+    		collide(w);
+		}
 		
 		translate(position.x, position.y);
 		mouseVector.set(mouseX, mouseY);

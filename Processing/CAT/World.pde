@@ -68,4 +68,8 @@ public class World {
 	public void addWall(Wall wall) {
 		walls.add(wall);
 	}
+
+	public List<Wall> getWalls() {
+        return walls;
+    }
 }

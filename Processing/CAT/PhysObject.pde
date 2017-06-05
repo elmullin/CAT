@@ -79,16 +79,10 @@ public abstract class PhysObject{
 	
 	/* COLLISIONS */
 	
-	public void collide(List<Object> list){
-		for(Object a: list){
-			if(a instanceof PhysObject){
-				collide((PhysObject) a);
-			}
-			else if(a instanceof Wall){
-				collide((Wall) a);
-			}
-		}
-	}
+	/**
+	 * Empty method -- override to add additional effects on collide.
+	 */
+	public void extraEffect(){}
 	
 	/**
 	 * Checks whether this collides with the given PhysObject.
@@ -98,7 +92,7 @@ public abstract class PhysObject{
 		float distance = position.dist(obj.position);
 		float boundary = radius + obj.radius;
 		
-		if (distance < boundary) {
+		if (distance < boundary && obj != this) {
 			if(obj.moveable){
 				PVector adjust = PVector.sub(position, obj.position).normalize().mult((boundary - distance) / 2.0);
 				position.add(adjust);
@@ -108,6 +102,8 @@ public abstract class PhysObject{
 				position.add(PVector.sub(position, obj.position).normalize().mult(boundary - distance));
 			}
 		}
+
+		extraEffect();
 	}
 	
 	/* collsion for a wall and a round object
