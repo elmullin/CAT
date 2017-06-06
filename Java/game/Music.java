@@ -1,6 +1,6 @@
 package game;
 
-import processing.core.PApplet;
+import processing.core.*;
 import ddf.minim.*;
 
 public class Music {
