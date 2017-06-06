@@ -9,10 +9,10 @@ public class World {
 	// -- variables --
 	
 	Player player;
-	private ArrayList<Actor> actors = new ArrayList<Actor>();
-	private ArrayList<Wall> walls = new ArrayList<Wall>();
+	private ArrayList<Actor> actors = new ArrayList();
+	private ArrayList<Wall> walls = new ArrayList();
     private Button pauseButton;
-	private ArrayList<Actor> deletionList = new ArrayList<Actor>();
+	private ArrayList<Actor> deletionList = new ArrayList();
 	private Background background;
 	private Music music;
 	private Score score;
