@@ -21,6 +21,12 @@ public class BreakableObject extends Actor {
 		}
 		fill(255);
 		ellipse(position.x, position.y, radius, radius);
+        stroke(160);
+        fill(0, 0);
+        ellipse(position.x, position.y, radius * 3 / 4, radius * 3 / 4);
+        noStroke();
+        fill(100, 255);
+        ellipse(position.x, position.y, radius * 5 / 8, radius * 5 / 8);
 		return deletionMark;
 	}
 }
