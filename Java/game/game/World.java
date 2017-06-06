@@ -6,87 +6,103 @@ import processing.core.*;
 import ddf.minim.*;
 
 public class World {
-    // -- constants --
+	// -- constants --
+	// music
+	private static final String LEVEL_MUSIC = "/assets/Who Likes to Party.mp3";
+	
+	// -- variables --
+	
+	Player player;
+	private ArrayList<Actor> actors = new ArrayList<Actor>();
+	private ArrayList<Wall> walls = new ArrayList<Wall>();
+	private ArrayList<Actor> deletionList = new ArrayList<Actor>();
+	private Background background;
+	private Music music;
+	private Score score;
+	
+	// -- constructors --
+	
+	// make world with background and default dimensions
+	public World(Background background, Minim minim, Player player) {
+		this.background = background;
+		this.player = player;
+		
+        if (music != null) {
+            music = new Music(minim);
+		    music.switchTrack(LEVEL_MUSIC, true);
+        }
+        
+		this.player = player;
+		score = new Score();
+	}
+	
+	// -- methods --
+	
+	// call this each update to trigger actor and wall updates
+	public void display() {
+		background.display();
+		for (Wall wall : walls) {
+			wall.display();
+		}
+		for (Actor actor : actors) {
+			if (actor.display()) {
+                markDeletion(actor);
+			}
+		}
+        score.display();
 
-    // music
-    private static final String LEVEL_MUSIC = "/assets/Who Likes to Party.mp3";
+        deletionList = updateDeletionList();
+		
+	}
 
-    // -- variables --
-  
-    //player object
-    Player player;
-    
-    // array to hold actors
-    ArrayList<Actor> actors = new ArrayList<Actor>();
-    
-    // array to hold walls
-    ArrayList<Wall> walls = new ArrayList<Wall>();
-    
-    // background image
-    Background background;
+    public void markDeletion(Actor actor) {
+        deletionList.add(actor);   
+    }
 
-    // music
-    Music music;
-    
-    //score
-    public Score score;
-    
-    //  -- constructors --
-    
-    // default constructor
-    public World(Minim minim) {
-      music = new Music(minim);
-      music.switchTrack(LEVEL_MUSIC, true);
-      
+    public ArrayList<Actor> updateDeletionList() {
+        while (deletionList.size() > 0) {
+            removeActor(deletionList.remove(0));
+        }   
+        return deletionList;
     }
-    
-    // make world with background and default dimensions
-    public World(Background background, Minim minim) {
-      this.background = background;
-      music = new Music(minim);
-      music.switchTrack(LEVEL_MUSIC, true);
-    }
-    
-    // -- methods --
-    
-    // call this each update to trigger actor and wall updates
-    public void display() {
-      background.display();
-      for (Wall wall : walls) {
-         wall.display();  
-      }
-      for (Actor actor : actors) {
-        actor.display();
-      }
-    }
-    
-    // add an actor to the list of updating actors
-    public void addActor(Actor actor) {
-      actor.setWorld(this);
-      actors.add(actor);
-    }
-    
-    // remove an actor from the list of actors belonging to this world
-    public void removeActor(Actor actor) {
-      actor.setWorld(null);
-      actors.remove(actor);
-    }
-    
-    // return an array of all actors
-    public List<Actor> getActors() {
-      return actors;
-    }
-    
-    // return an array of actors matching a given class
-    public <T extends Actor> List<Actor> getActors(Class<T> subclass) {
-      ArrayList<Actor> filtered = new ArrayList<Actor>();
-      for (Actor actor : actors)
-        if (actor.getClass().equals(subclass))
-          filtered.add(actor);
-      return filtered;
-    }
-    
-    public void addWall(Wall wall) {
-        walls.add(wall);  
-    }
+	
+	// add an actor to the list of updating actors
+	public void addActor(Actor actor) {
+		actor.setWorld(this);
+		actors.add(actor);
+	}
+	
+	// remove an actor from the list of actors belonging to this world
+	public void removeActor(Actor actor) {
+		actor.setWorld(null);
+		actors.remove(actor);
+	}
+	
+	// return an array of all actors
+	public List<Actor> getActors() {
+		return actors;
+	}
+	
+	// return an array of actors matching a given class
+	public <T extends Actor> List<Actor> getActors(Class<T> subclass) {
+		ArrayList<Actor> filtered = new ArrayList<Actor>();
+		for (Actor actor : actors) {
+			if (actor.getClass().equals(subclass)) {
+				filtered.add(actor);
+			}
+		}
+		return filtered;
+	}
+	
+	public void addWall(Wall wall) {
+		walls.add(wall);
+	}
+
+	public List<Wall> getWalls() {
+		return walls;
+	}
+
+	public Score getScore() {
+		return score;
+	}
 }
