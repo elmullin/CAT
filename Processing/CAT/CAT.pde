@@ -15,7 +15,7 @@ public void setup(){
 	LevelBuilder levelBuilder = new LevelBuilder();
 	
 	// load images
-	bgImg = loadImage("/assets/bg.png");
+	bgImg = loadImage("/assets/bg.gif");
 	catImg = loadImage("/assets/cat.gif");
 	playerImg = loadImage("/assets/PlayerPlaceHolder.gif");
 	scoreZoneImg = loadImage("/assets/scorezone.png");

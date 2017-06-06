@@ -6,8 +6,6 @@ public class Background{
 	}
 		
 	public void display(){
-		if (bg != null)
-			image(bg, 400, 300);
-		resetMatrix();
+		background(bg);
 	}
 }
