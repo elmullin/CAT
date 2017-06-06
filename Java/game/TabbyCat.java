@@ -17,7 +17,7 @@ public class TabbyCat extends Actor {
 	private static final String SOUND_8 = "/assets/Cat_Purr_1.mp3";
 
 	private static final int CATSPEED = 4; //speed of cats movement per 
-	private static final int FLEERAD = 60;
+	private static final int FLEERAD = 100;
 	private static final int CMC = 10; //1 in X chance each second for moving state to change
 	private static final int CDC = 5; //in in X chance each second to change direction while moving
 

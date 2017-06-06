@@ -111,8 +111,8 @@ public class Button {
         roundrect(positionX, positionY, recWidth, recHeight, 30);
       }
       
-      stroke(255);
-      text("Pause", positionX + 10, positionY + 30); 
+      fill(255);
+      text("Pause", positionX + 30, positionY + 35); 
   }
   
   public void pressMouse() {

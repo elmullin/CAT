@@ -42,7 +42,7 @@ public class LevelBuilder {
 
 		world.addActor(new ScoreZone(scoreZoneImg, 750, 600, 50));
 
-      world.addButton(new Button(700, 0, 50, 100));
+        world.addButton(new Button(700, 0, 50, 100));
 
 		world.addActor(player);
 		
