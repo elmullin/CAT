@@ -9,7 +9,7 @@ import org.junit.*;
 public class TestPlayerKeyReleased {
    Player player;
    
-   public TestPlayerKeyReleased() {
+   public void setup() {
       player = new Player(null, 0, 0);
       player.pressKey('w');
       player.pressKey('a');
@@ -19,6 +19,7 @@ public class TestPlayerKeyReleased {
    
    @Test
    public void testOneKeyPress() {
+      setup();
       int[] keysPressed = player.releaseKey('w');
       
       assertEquals(0, keysPressed[0]);
@@ -29,6 +30,7 @@ public class TestPlayerKeyReleased {
    
    @Test
    public void testTwoKeyPress() {
+      setup();
       player.releaseKey('a');
       int[] keysPressed = player.releaseKey('s');
       
