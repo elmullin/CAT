@@ -170,9 +170,9 @@ public abstract class PhysObject{
 		float myBottom = position.y + radius;
 		float myLeft = position.x - radius;
 		
-		return ((myLeft < wall.right)
+		return (myLeft < wall.right)
 		 && (wall.left < myRight)
 		 && (myTop < wall.bottom)
-		 && (wall.top < myBottom));
+		 && (wall.top < myBottom);
 	}
 }

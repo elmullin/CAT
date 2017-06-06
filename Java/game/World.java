@@ -63,7 +63,7 @@ public class World {
     }
 
     public ArrayList<Actor> updateDeletionList() {
-        while (deletionList.size() > 0) {
+        while (!deletionList.isEmpty()) {
             removeActor(deletionList.remove(0));
         }   
         return deletionList;
