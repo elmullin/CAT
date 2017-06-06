@@ -170,14 +170,9 @@ public abstract class PhysObject{
 		float myBottom = position.y + radius;
 		float myLeft = position.x - radius;
 		
-		if ((myLeft < wall.right)
+		return ((myLeft < wall.right)
 		 && (wall.left < myRight)
 		 && (myTop < wall.bottom)
-		 && (wall.top < myBottom)){
-			 return true;
-		}
-		else{
-			return false;
-		}
+		 && (wall.top < myBottom))
 	}
 }
