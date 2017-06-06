@@ -1,5 +1,4 @@
-import processing.core.PImage;
-import java.util.List;
+import ddf.minim.*;
 
 public class World {
 	// -- constants --
