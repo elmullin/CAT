@@ -2,7 +2,7 @@ import ddf.minim.*;
 
 public class LevelBuilder {
 	public World buildWorld(Minim minim, PImage bgImg, PImage playerImg, PImage catImg, PImage scoreZoneImg) {
-		Player player = new Player(playerImg, 50, 50); // passed into world, actor list
+		Player player = new Player(playerImg, 50, 100); // passed into world, actor list
 		//world setup
 		surface.setResizable(false);
 	
@@ -35,7 +35,7 @@ public class LevelBuilder {
 		world.addActor(new TabbyCat(catImg, 50, 200, minim));
 		world.addActor(new TabbyCat(catImg, 750, 50, minim));
 
-		world.addActor(new BreakableObject(5000, null, 475, 425, 25));
+		world.addActor(new BreakableObject(500, null, 475, 425, 25));
 
 		world.addActor(new ScoreZone(scoreZoneImg, 750, 600, 50));
 

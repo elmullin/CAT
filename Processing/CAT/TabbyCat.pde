@@ -127,7 +127,6 @@ public class TabbyCat extends Actor {
 			((BreakableObject)obj).breakObject();
 		}
 		else if (obj instanceof ScoreZone) {
-            System.out.println("test");
 			scoreCat();
 		}
 	}
