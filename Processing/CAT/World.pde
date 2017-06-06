@@ -9,11 +9,11 @@ public class World {
 	// -- variables --
 	
 	Player player;
-	ArrayList<Actor> actors = new ArrayList<Actor>();
-	ArrayList<Wall> walls = new ArrayList<Wall>();
-	ArrayList<Actor> deletionList = new ArrayList<Actor>();
-	Background background;
-	Music music;
+	private ArrayList<Actor> actors = new ArrayList<Actor>();
+	private ArrayList<Wall> walls = new ArrayList<Wall>();
+	private ArrayList<Actor> deletionList = new ArrayList<Actor>();
+	private Background background;
+	private Music music;
 	private Score score;
 	
 	// -- constructors --
@@ -22,8 +22,12 @@ public class World {
 	public World(Background background, Minim minim, Player player) {
 		this.background = background;
 		this.player = player;
-		music = new Music(minim);
-		music.switchTrack(LEVEL_MUSIC, true);
+		
+        if (music != null) {
+            music = new Music(minim);
+		    music.switchTrack(LEVEL_MUSIC, true);
+        }
+        
 		this.player = player;
 		score = new Score();
 	}
@@ -38,13 +42,24 @@ public class World {
 		}
 		for (Actor actor : actors) {
 			if (actor.display()) {
-				deletionList.add(actor);
+                markDeletion(actor);
 			}
 		}
-		while (deletionList.size() > 0) {
-			removeActor(deletionList.remove(0));
-		}
+
+        deletionList = updateDeletionList();
+		
 	}
+
+    public void markDeletion(Actor actor) {
+        deletionList.add(actor);   
+    }
+
+    public ArrayList<Actor> updateDeletionList() {
+        while (deletionList.size() > 0) {
+            removeActor(deleteList.remove(0));
+        }   
+        return deletionList;
+    }
 	
 	// add an actor to the list of updating actors
 	public void addActor(Actor actor) {
