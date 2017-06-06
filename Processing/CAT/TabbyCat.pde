@@ -29,7 +29,7 @@ public class TabbyCat extends Actor {
 	// -------------------------------------------------------------------------
 
 	public TabbyCat(PImage image, float x, float y, Minim minim){
-		super(image, x, y, 0, 0, 20, true);
+		super(image, x, y, 0, 0, 12, true);
 		catSounds = new Music(minim);
 		startTime = millis();
 		waitTime = random(5000) + 10000;
