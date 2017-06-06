@@ -125,7 +125,9 @@ public class Button {
      noStroke();
      rectMode(CORNER);
 
-     int  ax, ay, hr;
+     int ax;
+     int ay;
+     int hr;
 
      ax=x+w-1;
      ay=y+h-1;
