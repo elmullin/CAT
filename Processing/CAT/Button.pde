@@ -110,7 +110,7 @@ public class Button {
       }
       
       fill(255);
-      text("Pause", positionX + 10, positionY + 30); 
+      text("Pause", positionX + 30, positionY + 35); 
   }
   
   public void pressMouse() {
