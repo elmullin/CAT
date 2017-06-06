@@ -1,4 +1,5 @@
 import ddf.minim.*;
+import java.util.List;
 
 public class World {
 	// -- constants --
@@ -10,6 +11,7 @@ public class World {
 	Player player;
 	private ArrayList<Actor> actors = new ArrayList<Actor>();
 	private ArrayList<Wall> walls = new ArrayList<Wall>();
+    private Button pauseButton;
 	private ArrayList<Actor> deletionList = new ArrayList<Actor>();
 	private Background background;
 	private Music music;
@@ -35,19 +37,21 @@ public class World {
 	
 	// call this each update to trigger actor and wall updates
 	public void display() {
-		background.display();
-		for (Wall wall : walls) {
-			wall.display();
-		}
-		for (Actor actor : actors) {
-			if (actor.display()) {
-                markDeletion(actor);
-			}
-		}
-        score.display();
+        if (!pauseButton.getPauseState()) {
+		    background.display();
+	    	for (Wall wall : walls) {
+		    	wall.display();
+		    }
+		    for (Actor actor : actors) {
+    			if (actor.display()) {
+                    markDeletion(actor);
+			    }
+		    }
+            score.display();
 
-        deletionList = updateDeletionList();
-		
+            deletionList = updateDeletionList();
+        }
+        pauseButton.display();
 	}
 
     public void markDeletion(Actor actor) {
@@ -100,4 +104,12 @@ public class World {
 	public Score getScore() {
 		return score;
 	}
+
+    public void addButton(Button button) {
+        pauseButton = button;
+    }
+    
+    public Button getButton() {
+        return pauseButton;   
+    }
 }

@@ -35,9 +35,12 @@ public class LevelBuilder {
 		world.addActor(new TabbyCat(catImg, 50, 200, minim));
 		world.addActor(new TabbyCat(catImg, 750, 50, minim));
 
+
 		world.addActor(new BreakableObject(500, null, 475, 425, 25));
 
 		world.addActor(new ScoreZone(scoreZoneImg, 750, 600, 50));
+
+        world.addButton(new Button(700, 0, 50, 100));
 
 		world.addActor(player);
 		
