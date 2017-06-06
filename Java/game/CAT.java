@@ -43,3 +43,9 @@ public void keyPressed() {
 public void keyReleased() {
 	player.releaseKey(key);
 }
+
+public void mousePressed() {
+    if (world.getButton().overRect()) {
+        world.getButton().pressMouse();
+    }
+}

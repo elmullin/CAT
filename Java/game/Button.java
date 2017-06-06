@@ -3,91 +3,124 @@
    CPE 307
    CAT - Corral and Transfer
 
-   Updated: 5/18/17
+   Updated: 6/6/17 by Dylan Kohler
 */
 
+import processing.core.*;
+
 public class Button {
-  public int positionX;
-  public int positionY;
-  public int recHeight;
-  public int recWidth;
-  public int[] backgroundColor;
-  public int[] highlightColor;
-  public boolean rectOver;
-  public boolean rectPressed;
-  public String imageName;
-  public String imageSmallName;
-  public PImage image;
-  public PImage imageSmall;
+  private int positionX;
+  private int positionY;
+  private int recHeight;
+  private int recWidth;
+  private int[] backgroundColor;
+  private int[] highlightColor;
+  private boolean rectOver;
+  private boolean rectPressed;
+  private boolean pauseState;
   
-  public Button() {
-    this.positionX = 640/2-100;
-    this.positionY = 360/2-100/2;
-    this.recHeight = 100;
-    this.recWidth = 200;
-    this.backgroundColor = new int[3];
-    this.backgroundColor[0] = 77;
-    this.backgroundColor[1] = 77;
-    this.backgroundColor[2] = 77;
-    this.highlightColor = new int[3];
-    this.highlightColor[0] = 51;
-    this.highlightColor[1] = 51;
-    this.highlightColor[2] = 51;
-    this.rectOver = false;
-    this.rectPressed = false;
-    this.imageName = "thumbs-up.png";
-    this.imageSmallName = "thumbs-up-small.png";
-    this.image = loadImage(imageName);
-    this.imageSmall = loadImage(imageSmallName);
+  public Button(int positionX, int positionY, int recHeight, int recWidth) {
+    this.positionX = positionX;
+    this.positionY = positionY;
+    this.recHeight = recHeight;
+    this.recWidth = recWidth;
+    backgroundColor = new int[3];
+    backgroundColor[0] = 77;
+    backgroundColor[1] = 77;
+    backgroundColor[2] = 77;
+    highlightColor = new int[3];
+    highlightColor[0] = 51;
+    highlightColor[1] = 51;
+    highlightColor[2] = 51;
+    rectOver = false;
+    rectPressed = false;
+    pauseState = false;
   }
   
   public Button(Button button) {
-    this.positionX = button.positionX;
-    this.positionY = button.positionY;
-    this.recHeight = button.recHeight;
-    this.recWidth = button.recWidth;
+    this.positionX = button.getPositionX();
+    this.positionY = button.getPositionY();
+    this.recHeight = button.getRecHeight();
+    this.recWidth = button.getRecWidth();
     this.backgroundColor = new int[3];
-    this.backgroundColor[0] = button.backgroundColor[0];
-    this.backgroundColor[1] = button.backgroundColor[1];
-    this.backgroundColor[2] = button.backgroundColor[2];
+    this.backgroundColor[0] = button.getBackgroundColor(0);
+    this.backgroundColor[1] = button.getBackgroundColor(1);
+    this.backgroundColor[2] = button.getBackgroundColor(2);
     this.highlightColor = new int[3];
-    this.highlightColor[0] = button.highlightColor[0];
-    this.highlightColor[1] = button.highighlightColorhColor[1];
-    this.highlightColor[2] = button.highlightColor[2];
+    this.highlightColor[0] = button.getHighlightColor(0);
+    this.highlightColor[1] = button.getHighlightColor(1);
+    this.highlightColor[2] = button.getHighlightColor(2);
     this.rectOver = button.rectOver;
     this.rectPressed = button.rectPressed;
-    this.imageName = button.imageName;
-    this.imageSmallName = button.imageSmallName;
-    this.image = loadImage(button.image);
-    this.imageSmall = loadImage(button.imageSmall);
+    pauseState = false;
   }
   
-  public void drawButton() {  
-     if (overRect(this.positionX, this.positionY, this.recWidth, this.recHeight)) {
+  // ----------------------------------------------------------------------------
+  
+  public int getPositionX() {
+    return positionX;   
+  }
+  
+  public int getPositionY() {
+    return positionY;   
+  }
+  
+  public int getRecHeight() {
+    return recHeight;   
+  }
+  
+  public int getRecWidth() {
+    return recWidth;   
+  }
+  
+  public int getBackgroundColor(int i) {
+    return backgroundColor[i];
+  }
+  
+  public int getHighlightColor(int i) {
+    return highlightColor[i];   
+  }
+  
+  public boolean getRectPressed() {
+    return rectPressed;   
+  }
+  
+  public boolean getPauseState() {
+    return pauseState;   
+  }
+  
+  // ------------------------------------------------------------------------------
+  
+  public void display() {  
+     if (overRect()) {
         this.rectOver = true;
-        fill(color(this.highlightColor[0], this.highlightColor[1], this.highlightColor[2]));
+        fill(color(highlightColor[0], highlightColor[1], highlightColor[2]), 128);
      } else {
         this.rectOver = false;
-        fill(color(this.backgroundColor[0], this.backgroundColor[1], this.backgroundColor[2]));
+        fill(color(backgroundColor[0], backgroundColor[1], backgroundColor[2]), 128);
+        
      }
      
      stroke(255);
-     if (this.rectPressed) {
-        print("Pressed!\n");
-        roundrect(this.positionX + 5, this.positionY + 5, this.recWidth - 10, this.recHeight - 10, 30);
-        imageMode(CENTER);
-        image(this.imageSmall, this.positionX + this.recHeight, this.positionY + (this.recHeight / 2));
-        this.rectPressed = false;
+     if (rectPressed) {
+        roundrect(positionX + 5, positionY + 5, recWidth - 10, recHeight - 10, 30);
+        rectPressed = false;
+        pauseState = !pauseState;
       }
       else {
-        roundrect(this.positionX, this.positionY, this.recWidth, this.recHeight, 30);
-        imageMode(CENTER);
-        image(this.image, this.positionX + this.recHeight, this.positionY + (this.recHeight / 2));
+        roundrect(positionX, positionY, recWidth, recHeight, 30);
       }
+      
+      stroke(255);
+      text("Pause", positionX + 10, positionY + 30); 
   }
   
-  public boolean overRect(int x, int y, int width, int height) {
-    return mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
+  public void pressMouse() {
+    rectPressed = true;   
+  }
+  
+  public boolean overRect() {
+    return mouseX >= positionX && mouseX <= positionX + recWidth && mouseY >= positionY && mouseY <= positionY + recHeight;
   }
   
   public void roundrect(int x, int y, int w, int h, int r) {
