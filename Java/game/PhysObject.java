@@ -1,7 +1,6 @@
 package game;
 
 import processing.core.*;
-import java.util.List;
 
 public abstract class PhysObject{
 	
