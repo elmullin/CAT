@@ -11,8 +11,8 @@ public class World {
 	Player player;
 	private ArrayList<Actor> actors = new ArrayList();
 	private ArrayList<Wall> walls = new ArrayList();
-    private Button pauseButton;
-	private ArrayList<Actor> deletionList = new ArrayList();
+   private Button pauseButton;
+	private List<Actor> deletionList = new ArrayList();
 	private Background background;
 	private Music music;
 	private Score score;
@@ -58,8 +58,8 @@ public class World {
         deletionList.add(actor);   
     }
 
-    public ArrayList<Actor> updateDeletionList() {
-        while (deletionList.size() > 0) {
+    public List<Actor> updateDeletionList() {
+        while (!deletionList.isEmpty()) {
             removeActor(deletionList.remove(0));
         }   
         return deletionList;
@@ -84,7 +84,7 @@ public class World {
 	
 	// return an array of actors matching a given class
 	public <T extends Actor> List<Actor> getActors(Class<T> subclass) {
-		ArrayList<Actor> filtered = new ArrayList<Actor>();
+		ArrayList<Actor> filtered = new ArrayList();
 		for (Actor actor : actors) {
 			if (actor.getClass().equals(subclass)) {
 				filtered.add(actor);
