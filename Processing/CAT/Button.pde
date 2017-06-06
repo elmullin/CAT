@@ -3,7 +3,7 @@
    CPE 307
    CAT - Corral and Transfer
 
-   Updated: 5/18/17
+   Updated: 6/6/17 by Dylan Kohler
 */
 
 public class Button {
@@ -109,7 +109,7 @@ public class Button {
         roundrect(positionX, positionY, recWidth, recHeight, 30);
       }
       
-      stroke(255);
+      fill(255);
       text("Pause", positionX + 10, positionY + 30); 
   }
   
