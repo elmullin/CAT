@@ -34,10 +34,22 @@ public abstract class PhysObject{
 	/* MOVEMENT */
 	
 	/**
-	 * Moves the object in the direction of the velocity.
+	 * Moves the object in the direction of the velocity and checks for collisions.
 	 */
 	public void move(){
-		position.add(velocity);
+		if(velocity.mag() != 0){
+			position.add(velocity);
+			
+			for(Actor a : world.getActors(TabbyCat.class)){
+				collide(a);
+			}
+			for (Actor a : world.getActors(BreakableObject.class)) {
+				collide((BreakableObject)a);
+			}
+			for(Wall w : world.getWalls()){
+				collide(w);
+			}
+		}
 	}
 	
 	/**

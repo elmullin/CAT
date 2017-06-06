@@ -63,31 +63,24 @@ public class Player extends Actor {
 
 	// -------------------------------------------------------------------------
 	
+	@Override
+	public void move(){
+		velocity.set(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
+		super.move();
+	}
+	
 	public boolean display() {
-		velocity = new PVector(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
-		
 		move();
-		
-		for(Actor a : world.getActors(TabbyCat.class)){
-			collide(a);
-		}
-		for (Actor a : world.getActors(BreakableObject.class)) {
-			collide((BreakableObject)a);
-		}
-		
-		//TODO: broken
-		for(Wall w : world.getWalls()){
-			collide(w);
-		}
 		
 		translate(position.x, position.y);
 		mouseVector.set(mouseX, mouseY);
 		mouseVector.sub(position);
 		rotate(mouseVector.heading());
-		image(getImage(), 0, 0);
-		
+
+		image(sprite, 0, 0);
 		resetMatrix();
-		return deletionMark; // should always be false
+
+		return false;
 	}
 
 	//override collide for breakable object BROKEN?

@@ -6,7 +6,7 @@ public class Actor extends PhysObject{
 	private World world;
 	
 	// sprite of actor
-	private PImage sprite;
+	protected PImage sprite;
 
 	// deletion marker
 	protected boolean deletionMark; 
