@@ -45,6 +45,7 @@ public class World {
                 markDeletion(actor);
 			}
 		}
+        score.display();
 
         deletionList = updateDeletionList();
 		

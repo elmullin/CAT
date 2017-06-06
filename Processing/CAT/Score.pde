@@ -10,11 +10,30 @@ public class Score {
 	private int objectsBroken; // the number of broken objects
 	private int catsCorralled; // the number of cats captured
 
+    // ------------------------------------------------------------------------------------
+
 	public Score() {
 		valObjectsBroken = 0;
 		objectsBroken = 0;
 		catsCorralled = 0;
 	}
+
+    // ------------------------------------------------------------------------------------
+    
+    public void display() {
+        pushMatrix();
+            fill(255, 128);
+            rect(0, 0, 100, 50, 12, 12, 12, 12);
+            fill(50);
+            if (0 <= getCatValue() + getObjectsValue()) {
+                text("$" + (getCatValue() + getObjectsValue()) + ".00", 10, 30);
+            }
+            else {
+                  text("-$" + abs(getCatValue() + getObjectsValue()) + ".00", 10, 30);
+            }
+        popMatrix();
+        resetMatrix();
+    }
 	
 	/**
 	 * Increase the total value of broken objects by the specified value and
