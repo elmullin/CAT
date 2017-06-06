@@ -6,6 +6,8 @@
    Updated: 6/6/17 by Dylan Kohler
 */
 
+package game;
+
 import processing.core.*;
 
 public class Button {

@@ -12,8 +12,9 @@ public class Music {
 		
 	// -------------------------------------------------------------------------
 
-	public Music(Minim minim){
+	public Music(Minim minim, String track){
 		this.minim = minim;
+        player = minim.loadFile(track);
 	}
 
 	// -------------------------------------------------------------------------
