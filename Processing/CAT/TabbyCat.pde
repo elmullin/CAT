@@ -36,6 +36,13 @@ public class TabbyCat extends Actor {
 	}
 
 	// -------------------------------------------------------------------------
+
+    @Override
+    public void move() { // like physObject move, but also check for ScoreZone
+        super.move();
+        collide(world.getActors(ScoreZone.class).get(0));
+    }
+
 	private void makeNoise() {
 		if (millis() >= startTime + waitTime) {
 			switch ((int)random(8) + 1) {
@@ -120,15 +127,10 @@ public class TabbyCat extends Actor {
 			((BreakableObject)obj).breakObject();
 		}
 		else if (obj instanceof ScoreZone) {
+            System.out.println("test");
 			scoreCat();
 		}
 	}
-	
-	//override collide for ScoreZones BROKEN?
-	public void collide(ScoreZone goal){
-		super.collide(goal);
-		goal.scoreCat(this);
-	}//close collide ScoreZone
 
 	public boolean display() {
 		pathing();
