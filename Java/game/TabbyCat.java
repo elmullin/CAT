@@ -48,7 +48,9 @@ public class TabbyCat extends Actor {
     @Override
     public void move() { // like physObject move, but also check for ScoreZone
         super.move();
-        collide(getWorld().getActors(ScoreZone.class).get(0));
+        
+        if (!getWorld().getActors(ScoreZone.class).isEmpty())
+        	collide(getWorld().getActors(ScoreZone.class).get(0));
     }
 
 	private void makeNoise() {
