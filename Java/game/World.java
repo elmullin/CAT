@@ -18,7 +18,7 @@ public class World {
 	private List<Actor> deletionList = new ArrayList<>();
 	private Background background;
 	private Music music;
-	public Score score;
+	private Score score;
 	
 	// -- constructors --
 	

@@ -18,7 +18,7 @@ public class BreakableObject extends Actor {
 	* Called by a player or cat if they collide with this object
 	*/
 	public void breakObject() {
-		getWorld().score.incrementObjectsBroken(value);
+		getWorld().getScore().incrementObjectsBroken(value);
 		markDelete();
 	}
 
