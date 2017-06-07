@@ -19,7 +19,7 @@ public class TestUpdateDeletionList {
            markDeletion(actorList.get(i));
         }
         
-        return updateDeletionList();
+        return world.updateDeletionList();
     }
     
     @Test
