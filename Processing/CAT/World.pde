@@ -24,7 +24,7 @@ public class World {
 		this.background = background;
 		this.player = player;
 		
-        if (music != null) {
+        if (music == null) {
             music = new Music(minim, LEVEL_MUSIC);
 		    music.switchTrack(LEVEL_MUSIC, true);
         }
