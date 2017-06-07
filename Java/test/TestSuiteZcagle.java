@@ -9,6 +9,6 @@ import org.junit.runner.RunWith;
 @RunWith(Suite.class)
 @SuiteClasses({ TestPlayerKeyReleased.class })
 
-public class TestSuite_dlkohler {
+public class TestSuiteZcagle {
 
 }

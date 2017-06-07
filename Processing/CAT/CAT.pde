@@ -15,10 +15,10 @@ public void setup(){
 	LevelBuilder levelBuilder = new LevelBuilder();
 	
 	// load images
-	bgImg = loadImage("/assets/bg.gif");
-	catImg = loadImage("/assets/cat.gif");
-	playerImg = loadImage("/assets/player.gif");
-	scoreZoneImg = loadImage("/assets/scorezone.png");
+	bgImg = loadImage("assets/bg.gif");
+	catImg = loadImage("assets/cat.gif");
+	playerImg = loadImage("assets/player.gif");
+	scoreZoneImg = loadImage("assets/scorezone.png");
 	
 	world = levelBuilder.buildWorld(minim, bgImg, playerImg, catImg, scoreZoneImg);
 	player = (Player)(world.getActors(Player.class).get(0));
