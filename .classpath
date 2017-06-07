@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="game/" kind="src" path="Java"/>
-	<classpathentry kind="src" path="Java/game"/>
-	<classpathentry kind="lib" path="Processing/CAT/code/jl1.0.jar"/>
-	<classpathentry kind="lib" path="Processing/CAT/code/jsminim.jar"/>
-	<classpathentry kind="lib" path="Processing/CAT/code/minim.jar"/>
-	<classpathentry kind="lib" path="Processing/CAT/code/mp3spi1.9.4.jar"/>
-	<classpathentry kind="lib" path="Processing/CAT/code/tritonus_aos.jar"/>
-	<classpathentry kind="lib" path="Processing/CAT/code/tritonus_share.jar"/>
-	<classpathentry kind="lib" path="core.jar"/>
+	<classpathentry kind="src" path="Java"/>
+	<classpathentry exported="true" kind="lib" path="Processing/CAT/code/jl1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/CAT/code/jsminim.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/CAT/code/minim.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/CAT/code/mp3spi1.9.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/CAT/code/tritonus_aos.jar"/>
+	<classpathentry exported="true" kind="lib" path="Processing/CAT/code/tritonus_share.jar"/>
+	<classpathentry exported="true" kind="lib" path="core.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>

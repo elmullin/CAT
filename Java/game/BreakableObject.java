@@ -6,9 +6,12 @@ public class BreakableObject extends Actor {
 
 	private int value; // the cost of the object
 	
-	public BreakableObject(int value, PImage image, float posX, float posY, float radius) {
-		super(image, posX, posY, radius, false);
+	PApplet parent;
+	
+	public BreakableObject(int value, PImage image, float posX, float posY, float radius, PApplet p) {
+		super(image, posX, posY, radius, false, p);
 		this.value = value;
+		parent = p;
 	}
 
 	/*
@@ -23,14 +26,14 @@ public class BreakableObject extends Actor {
 		if (deletionMark) {
 			return deletionMark;
 		}
-		fill(255);
-		ellipse(position.x, position.y, radius, radius);
-        stroke(160);
-        fill(0, 0);
-        ellipse(position.x, position.y, radius * 3 / 4, radius * 3 / 4);
-        noStroke();
-        fill(100, 255);
-        ellipse(position.x, position.y, radius * 5 / 8, radius * 5 / 8);
+		parent.fill(255);
+		parent.ellipse(position.x, position.y, radius, radius);
+        parent.stroke(160);
+        parent.fill(0, 0);
+        parent.ellipse(position.x, position.y, radius * 3 / 4, radius * 3 / 4);
+        parent.noStroke();
+        parent.fill(100, 255);
+        parent.ellipse(position.x, position.y, radius * 5 / 8, radius * 5 / 8);
 		return deletionMark;
 	}
 }

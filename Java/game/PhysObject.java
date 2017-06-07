@@ -14,6 +14,9 @@ public abstract class PhysObject{
 	
 	boolean moveable;
 	
+	// PApplet reference
+	PApplet parent;
+	
 	
 	/* CONSTRUCTORS */
 	
@@ -21,18 +24,19 @@ public abstract class PhysObject{
 	 * Full constructor.
 	 */
 	public PhysObject(float posX, float posY, float velX, float velY, 
-	float collisionRadius, boolean isMoveable){
+	float collisionRadius, boolean isMoveable, PApplet p){
 		radius = collisionRadius;
 		moveable = isMoveable;
 		position = new PVector(posX, posY);
 		velocity = new PVector(velX, velY);
+		parent = p;
 	}
 	
 	/**
 	 * No-velocity constructor.
 	 */
-	public PhysObject(float posX, float posY, float collisionRadius, boolean isMoveable){
-		this(posX, posY, 0, 0, collisionRadius, isMoveable);
+	public PhysObject(float posX, float posY, float collisionRadius, boolean isMoveable, PApplet p){
+		this(posX, posY, 0, 0, collisionRadius, isMoveable, p);
 	}
 	
 	/* MOVEMENT */
@@ -110,7 +114,7 @@ public abstract class PhysObject{
 		
 		if (distance < boundary && obj != this) {
 			if(obj.moveable){
-				PVector adjust = PVector.sub(position, obj.position).normalize().mult((boundary - distance) / 2.0);
+				PVector adjust = PVector.sub(position, obj.position).normalize().mult((float)((boundary - distance) / 2.0));
 				position.add(adjust);
 				obj.position.sub(adjust);
 			}
@@ -132,20 +136,20 @@ public abstract class PhysObject{
 		float myLeft = position.x - radius;
 		
 		// negative is a collision; positive is null
-		float top = min(myTop - wall.bottom, 0);
-		float left = min(myLeft - wall.right, 0);
+		float top = PApplet.min(myTop - wall.bottom, 0);
+		float left = PApplet.min(myLeft - wall.right, 0);
 
 		// positive is a collision; negative is null
-		float right = max(myRight - wall.left, 0);
-		float bottom = max(myBottom - wall.top, 0);
+		float right = PApplet.max(myRight - wall.left, 0);
+		float bottom = PApplet.max(myBottom - wall.top, 0);
 		
 		if (top != 0
 		 && left != 0
 		 && right != 0
 		 && bottom != 0){
-			float y = (abs(top) < abs(bottom)) ? top : bottom;
-			float x = (abs(left) < abs(right)) ? left : right;
-			if (abs(x) < abs(y)){
+			float y = (PApplet.abs(top) < PApplet.abs(bottom)) ? top : bottom;
+			float x = (PApplet.abs(left) < PApplet.abs(right)) ? left : right;
+			if (PApplet.abs(x) < PApplet.abs(y)){
 				position.x -= x;
 			}
 			else {

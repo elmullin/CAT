@@ -20,8 +20,9 @@ public class Button {
   private boolean rectOver;
   private boolean rectPressed;
   private boolean pauseState;
+  PApplet parent;
   
-  public Button(int positionX, int positionY, int recHeight, int recWidth) {
+  public Button(int positionX, int positionY, int recHeight, int recWidth, PApplet p) {
     this.positionX = positionX;
     this.positionY = positionY;
     this.recHeight = recHeight;
@@ -37,9 +38,10 @@ public class Button {
     rectOver = false;
     rectPressed = false;
     pauseState = false;
+    parent = p;
   }
   
-  public Button(Button button) {
+  public Button(Button button, PApplet p) {
     this.positionX = button.getPositionX();
     this.positionY = button.getPositionY();
     this.recHeight = button.getRecHeight();
@@ -55,6 +57,7 @@ public class Button {
     this.rectOver = button.rectOver;
     this.rectPressed = button.rectPressed;
     pauseState = false;
+    parent = p;
   }
   
   // ----------------------------------------------------------------------------
@@ -96,14 +99,14 @@ public class Button {
   public void display() {  
      if (overRect()) {
         this.rectOver = true;
-        fill(color(highlightColor[0], highlightColor[1], highlightColor[2]), 128);
+        parent.fill(parent.color(highlightColor[0], highlightColor[1], highlightColor[2]), 128);
      } else {
         this.rectOver = false;
-        fill(color(backgroundColor[0], backgroundColor[1], backgroundColor[2]), 128);
+        parent.fill(parent.color(backgroundColor[0], backgroundColor[1], backgroundColor[2]), 128);
         
      }
      
-     stroke(255);
+     parent.stroke(255);
      if (rectPressed) {
         roundrect(positionX + 5, positionY + 5, recWidth - 10, recHeight - 10, 30);
         rectPressed = false;
@@ -113,8 +116,8 @@ public class Button {
         roundrect(positionX, positionY, recWidth, recHeight, 30);
       }
       
-      fill(255);
-      text("Pause", positionX + 30, positionY + 35); 
+      parent.fill(255);
+      parent.text("Pause", positionX + 30, positionY + 35); 
   }
   
   public void pressMouse() {
@@ -122,12 +125,12 @@ public class Button {
   }
   
   public boolean overRect() {
-    return mouseX >= positionX && mouseX <= positionX + recWidth && mouseY >= positionY && mouseY <= positionY + recHeight;
+    return parent.mouseX >= positionX && parent.mouseX <= positionX + recWidth && parent.mouseY >= positionY && parent.mouseY <= positionY + recHeight;
   }
   
   public void roundrect(int x, int y, int w, int h, int r) {
-     noStroke();
-     rectMode(CORNER);
+     parent.noStroke();
+     parent.rectMode(PApplet.CORNER);
 
      int ax;
      int ay;
@@ -137,14 +140,14 @@ public class Button {
      ay=y+h-1;
      hr = r/2;
 
-     rect(x, y, w, h);
-     arc(x, y, r, r, radians(180.0), radians(270.0));
-     arc(ax, y, r,r, radians(270.0), radians(360.0));
-     arc(x, ay, r,r, radians(90.0), radians(180.0));
-     arc(ax, ay, r,r, radians(0.0), radians(90.0));
-     rect(x, y-hr, w, hr);
-     rect(x-hr, y, hr, h);
-     rect(x, y+h, w, hr);
-     rect(x+w,y,hr, h);
+     parent.rect(x, y, w, h);
+     parent.arc(x, y, r, r, PApplet.radians((float)180.0), PApplet.radians((float)270.0));
+     parent.arc(ax, y, r,r, PApplet.radians((float)270.0), PApplet.radians((float)360.0));
+     parent.arc(x, ay, r,r, PApplet.radians((float)90.0), PApplet.radians((float)180.0));
+     parent.arc(ax, ay, r,r, PApplet.radians((float)0.0), PApplet.radians((float)90.0));
+     parent.rect(x, y-hr, w, hr);
+     parent.rect(x-hr, y, hr, h);
+     parent.rect(x, y+h, w, hr);
+     parent.rect(x+w,y,hr, h);
   } 
 }

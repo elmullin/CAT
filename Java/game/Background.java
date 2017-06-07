@@ -4,12 +4,14 @@ import processing.core.*;
 
 public class Background{
 	private PImage bg;
+	PApplet parent;
 		
-	public Background(PImage bg){
+	public Background(PImage bg, PApplet p){
 		this.bg = bg;
+		parent = p;
 	}
 		
 	public void display(){
-		background(bg);
+		parent.background(bg);
 	}
 }

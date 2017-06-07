@@ -13,26 +13,32 @@ public class Actor extends PhysObject{
 	protected PImage sprite;
 
 	// deletion marker
-	protected boolean deletionMark; 
+	protected boolean deletionMark;
+	
+	// PApplet reference
+	PApplet parent;
 	
 	// -- constructors --
 
 	// make actor in position with sprite
 	public Actor(PImage sprite, float posX, float posY, float velX, float velY, 
-	float radius, boolean moveable) {
-		super(posX, posY, velX, velY, radius, moveable);
+	float radius, boolean moveable, PApplet p) {
+		super(posX, posY, velX, velY, radius, moveable, p);
 		this.sprite = sprite;
 		deletionMark = false;
+		parent = p;
 	}
 
-	public Actor(PImage sprite, float posX, float posY, float radius, boolean moveable) {
-		this(sprite, posX, posY, 0, 0, radius, moveable);
+	public Actor(PImage sprite, float posX, float posY, float radius, boolean moveable, PApplet p) {
+		this(sprite, posX, posY, 0, 0, radius, moveable, p);
 		deletionMark = false;
+		parent = p;
 	}
 
-	public Actor(PImage sprite, float posX, float posY) {
-		this(sprite, posX, posY, 0, 0, 0, false);
+	public Actor(PImage sprite, float posX, float posY, PApplet p) {
+		this(sprite, posX, posY, 0, 0, 0, false, p);
 		deletionMark = false;
+		parent = p;
 	}
 	
 	// -- methods --
@@ -40,9 +46,9 @@ public class Actor extends PhysObject{
 	// display actor on screen
 	public boolean display() {
 		if (sprite != null) {
-			image(sprite, position.x, position.y);
+			parent.image(sprite, position.x, position.y);
 		}
-		resetMatrix();
+		parent.resetMatrix();
 		return deletionMark;
 	}
 	
@@ -58,7 +64,7 @@ public class Actor extends PhysObject{
 	
 	// scale sprite of actor by given factor
 	void scaleImage(double factor) {
-		scaleImage((int) Math.round(factor * width), (int) Math.round(factor * height));
+		scaleImage((int) Math.round(factor * parent.width), (int) Math.round(factor * parent.height));
 	}
 	
 	// returns world of this actors as a World
@@ -89,12 +95,12 @@ public class Actor extends PhysObject{
 	
 	// returns width of actor
 	int getWidth() {
-		return width;
+		return parent.width;
 	}
 	
 	// returns height of actor
 	int getHeight() {
-		return height;
+		return parent.height;
 	}
 	
 	// returns sprite of actor

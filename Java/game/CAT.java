@@ -14,6 +14,10 @@ PImage scoreZoneImg;
 Player player;
 
 public class CAT extends PApplet{
+	
+	public static void main(String[] args){
+		PApplet.main("CAT");
+	}
 
 	public void setup(){
 		minim = new Minim(this);
