@@ -135,10 +135,10 @@ public abstract class PhysObject{
 		float right = max(myRight - wall.left, 0);
 		float bottom = max(myBottom - wall.top, 0);
 		
-		if (top != 0
-		 && left != 0
-		 && right != 0
-		 && bottom != 0){
+		if (Float.compare(top, 0) != 0
+		 && Float.compare(left, 0) != 0
+		 && Float.compare(right, 0) != 0
+		 && Float.compare(bottom, 0) != 0){
 			float y = (abs(top) < abs(bottom)) ? top : bottom;
 			float x = (abs(left) < abs(right)) ? left : right;
 			if (abs(x) < abs(y)){
