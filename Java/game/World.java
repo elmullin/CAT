@@ -15,7 +15,7 @@ public class World {
 	Player player;
 	private ArrayList<Actor> actors = new ArrayList<>();
 	private ArrayList<Wall> walls = new ArrayList<>();
-   private Button pauseButton;
+    private Button pauseButton;
 	private List<Actor> deletionList = new ArrayList<>();
 	private Background background;
 	private Music music;
@@ -38,6 +38,10 @@ public class World {
         
 		this.player = player;
 		score = new Score(parent);
+	}
+	
+	public World() {
+		// used for testing, do not delete
 	}
 	
 	// -- methods --

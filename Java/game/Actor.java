@@ -31,6 +31,12 @@ public class Actor extends PhysObject{
 		parent = p;
 	}
 	
+	public Actor(PApplet p) {
+		super(0, 0, 0, false, p);
+		this.parent = p;
+		this.deletionMark = false;
+	}
+	
 	// -- methods --
 	
 	// display actor on screen
