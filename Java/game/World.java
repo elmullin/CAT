@@ -40,7 +40,8 @@ public class World {
 		score = new Score(parent);
 	}
 	
-	public World() {
+	public World(PApplet p) {
+		this.parent = p;
 		// used for testing, do not delete
 	}
 	
