@@ -4,7 +4,7 @@ import java.util.List;
 public class World {
 	// -- constants --
 	// music
-	private static final String LEVEL_MUSIC = "/assets/Who Likes to Party.mp3";
+	private static final String LEVEL_MUSIC = "assets/Who Likes to Party.mp3";
 	
 	// -- variables --
 	
