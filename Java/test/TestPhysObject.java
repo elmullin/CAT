@@ -62,9 +62,9 @@ public class TestPhysObject {
 		world.addActor(a);
       a.pressKey('w');
 
-		world.addActor(new TabbyCat(null, -1, 0, null, cat));
+		world.addActor(new TabbyCat(null, -100, 0, null, cat));
 
-      world.addActor(new BreakableObject(400, null, 0, 1, 0, cat));
+      world.addActor(new BreakableObject(400, null, 0, 100, 0, cat));
 		
 		a.move();
 		
@@ -78,11 +78,11 @@ public class TestPhysObject {
 		world.addActor(a);
       a.pressKey('w');
 
-		world.addActor(new TabbyCat(null, -1, 0, null, cat));
-      world.addActor(new TabbyCat(null, 1, 0, null, cat));
+		world.addActor(new TabbyCat(null, -100, 0, null, cat));
+      world.addActor(new TabbyCat(null, 100, 0, null, cat));
 
-      world.addActor(new BreakableObject(400, null, 1, 0, 0, cat));
-      world.addActor(new BreakableObject(400, null, 2, 0, 0, cat));
+      world.addActor(new BreakableObject(400, null, 200, 0, 0, cat));
+      world.addActor(new BreakableObject(400, null, -200, 0, 0, cat));
 		
 		a.move();
 		
@@ -98,11 +98,11 @@ public class TestPhysObject {
       a.pressKey('w');
 
       for (int i = 0; i < 10; i++) {
-		   world.addActor(new TabbyCat(null, -1 * i, 0, null, cat));
+		   world.addActor(new TabbyCat(null, -100 * i, 0, null, cat));
       }
 
       for (int i = 0; i < 10; i++) {
-         world.addActor(new BreakableObject(400, null, 1 * i, 0, 0, cat));
+         world.addActor(new BreakableObject(400, null, 100 * i, 0, 0, cat));
       }
 		
 		a.move();
