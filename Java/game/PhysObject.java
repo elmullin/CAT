@@ -4,10 +4,10 @@ import processing.core.*;
 
 public abstract class PhysObject{
 	
-	protected PVector position;
+	public PVector position;
 	
 	// A vector describing the object's movement
-	PVector velocity;
+	public PVector velocity;
 	
 	// the collision radius
 	float radius;

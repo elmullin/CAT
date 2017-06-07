@@ -11,7 +11,6 @@ public class Player extends Actor {
 	private static final char LEFT = 'a';
 	private static final char DOWN = 's';
 	private static final char RIGHT = 'd';
-	PApplet parent;
 
 	/*
 	 * Fields

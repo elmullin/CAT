@@ -12,10 +12,10 @@ import game.Button;
 
 public class TestButton {
 	
-	private static game.CAT cat;
+	private game.CAT cat;
 	
 	@Before
-	public static void setup(){
+	public void setup(){
 		cat = new game.CAT();
 	}
 

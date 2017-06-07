@@ -30,8 +30,6 @@ public class TabbyCat extends Actor {
 
 	private boolean moving = false;
 	private int lastSec = 0;
-	
-	PApplet parent;
 
 	// -------------------------------------------------------------------------
 
@@ -134,6 +132,7 @@ public class TabbyCat extends Actor {
 		markDelete();
 	}
 	
+	@Override
 	public void extraEffect(PhysObject obj) {
 		if (obj instanceof BreakableObject) {
 			((BreakableObject)obj).breakObject();
@@ -143,6 +142,7 @@ public class TabbyCat extends Actor {
 		}
 	}
 
+	@Override
 	public boolean display() {
 		pathing();
 		if(moving){

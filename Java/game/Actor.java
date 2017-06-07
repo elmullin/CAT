@@ -12,9 +12,6 @@ public class Actor extends PhysObject{
 	// deletion marker
 	protected boolean deletionMark;
 	
-	// PApplet reference
-	PApplet parent;
-	
 	// -- constructors --
 
 	// make actor in position with sprite
