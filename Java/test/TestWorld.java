@@ -9,7 +9,7 @@ import game.*;
 public class TestUpdateDeletionList {
     World world;
     
-    public LinkedList<Actor> setup(int n) {
+    public List<Actor> setup(int n) {
         world = new World(null, null, null);
         List<Actor> actorList;
         for (int i = 0; i < n; i++) {
