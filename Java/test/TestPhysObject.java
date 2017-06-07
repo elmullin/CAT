@@ -43,7 +43,6 @@ public class TestPhysObject {
 		
 		b = new TabbyCat(null, -36, 0, null, cat);
 		assertEquals(false, a.isIntersecting(b));
-		
 	}
 	
 	@Test
@@ -54,10 +53,10 @@ public class TestPhysObject {
 		
 		world.addActor(new TabbyCat(null, -1, 0, null, cat));
 		
-		a.velocity = new PVector(0, 1); // A is moving down
+		a.setVelocity(new PVector(0, 1)); // A is moving down
 		a.move();
 		
-		assertEquals(11, a.position.x, 0.001);
-		assertEquals(1, a.position.y, (float) 0.001);
+		assertEquals(11, a.getPosition().x, 0.001);
+		assertEquals(1, a.getPosition().y, (float) 0.001);
 	} // note: this can be repeated for more/fewer tabbycats, walls, etc.
 }

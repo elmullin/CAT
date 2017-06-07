@@ -92,13 +92,13 @@ public class TabbyCat extends Actor {
 
 	public void flee(){
 		moving = true;
-		velocity = PVector.sub(position, getWorld().player.position);
-		velocity.normalize().mult(CATSPEED);
+		setVelocity(PVector.sub(getPosition(), getWorld().player.getPosition()));
+		getVelocity().normalize().mult(CATSPEED);
 	}
 
 	public void changeDir(){
-		velocity = PVector.random2D();
-		velocity.mult(CATSPEED);
+		setVelocity(PVector.random2D());
+		getVelocity().mult(CATSPEED);
 	}//close changeDir
 
 	public void alone(){
@@ -122,7 +122,7 @@ public class TabbyCat extends Actor {
 	}//close pathing
 
 	public void pathing(){
-		if(PApplet.dist(getWorld().player.position.x, getWorld().player.position.y, position.x, position.y) <= FLEERAD){
+		if(PApplet.dist(getWorld().player.getPosition().x, getWorld().player.getPosition().y, getPosition().x, getPosition().y) <= FLEERAD){
 			flee();
 		}else{
 			alone();

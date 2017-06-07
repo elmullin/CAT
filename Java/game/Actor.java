@@ -39,7 +39,7 @@ public class Actor extends PhysObject{
 	// display actor on screen
 	public boolean display() {
 		if (sprite != null) {
-			parent.image(sprite, position.x, position.y);
+			parent.image(sprite, getPosition().x, getPosition().y);
 		}
 		parent.resetMatrix();
 		return deletionMark;
@@ -68,12 +68,12 @@ public class Actor extends PhysObject{
 	
 	// returns x-value of actor
 	float getX() {
-		return position.x;
+		return getPosition().x;
 	}
 	
 	// returns y-value of actor
 	float getY() {
-		return position.y;
+		return getPosition().y;
 	}
 	
 	// returns width of actor

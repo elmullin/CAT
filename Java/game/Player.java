@@ -70,16 +70,17 @@ public class Player extends Actor {
 	
 	@Override
 	public void move(){
-		velocity.set(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
+		getVelocity().set(keysPressed[3] + keysPressed[1], keysPressed[2] + keysPressed[0]);
 		super.move();
 	}
 	
+	@Override
 	public boolean display() {
 		move();
 		
-		parent.translate(position.x, position.y);
+		parent.translate(getPosition().x, getPosition().y);
 		mouseVector.set(parent.mouseX, parent.mouseY);
-		mouseVector.sub(position);
+		mouseVector.sub(getPosition());
 		parent.rotate(mouseVector.heading());
 
 		parent.image(sprite, 0, 0);
@@ -89,6 +90,7 @@ public class Player extends Actor {
 	}
 
 	//override collide for breakable object BROKEN?
+	@Override
 	public void extraEffect(PhysObject obj) {
 		if (obj instanceof BreakableObject) {
 			((BreakableObject)obj).breakObject();

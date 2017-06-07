@@ -4,10 +4,10 @@ import processing.core.*;
 
 public abstract class PhysObject{
 	
-	public PVector position;
+	private PVector position;
 	
 	// A vector describing the object's movement
-	public PVector velocity;
+	private PVector velocity;
 	
 	// the collision radius
 	float radius;
@@ -195,5 +195,22 @@ public abstract class PhysObject{
 	// sets the world this actor is in
 	public void setWorld(World world) {
 		this.world = world;
+	}
+	
+	// position and velocity getters and setters
+	public PVector getPosition() {
+		return position;
+	}
+	
+	public void setPosition(PVector position) {
+		this.position = position;
+	}
+	
+	public PVector getVelocity() {
+		return velocity;
+	}
+	
+	public void setVelocity(PVector velocity) {
+		this.velocity = velocity;
 	}
 }
