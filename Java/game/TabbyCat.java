@@ -78,7 +78,11 @@ public class TabbyCat extends Actor {
 			case 8:
 				catSounds.switchTrack(SOUND_8, false);
 				break;
+				
+			default:
+				//do nothing, here so sonarQube stops whining
 			}
+			
 			startTime = parent.millis();
 			waitTime = parent.random(5000) + 11000;
 		}
@@ -108,10 +112,8 @@ public class TabbyCat extends Actor {
 			}//close if moving
 		}//close if changing move state
 		
-		if(moving){
-			if((int)(parent.random(CDC)) == 0){
+		if(moving && (int)(parent.random(CDC)) == 0){
 				changeDir();
-			}//close if changing direction
 		}//close if moving
 	}//close timing if
 

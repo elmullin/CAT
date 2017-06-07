@@ -5,7 +5,7 @@ public class ScoreZone extends Actor {
 	}
 	
 	public void scoreCat(TabbyCat target){
-		getWorld().score.incrementCatsCorralled();
+		getWorld().getScore().incrementCatsCorralled();
 		getWorld().removeActor(target);
 	}
 }
