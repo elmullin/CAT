@@ -11,14 +11,11 @@ import game.*;
 
 public class TestPlayer {
 	
-   private game.CAT cat;
-	
    Player player;
    
    @Before
    public void setup() {
-	  cat = new game.CAT();
-      player = new Player(null, 0, 0, cat);
+      player = new Player(null, 0, 0, new game.CAT());
       player.pressKey('w');
       player.pressKey('a');
       player.pressKey('s');
