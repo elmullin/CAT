@@ -13,30 +13,33 @@ public class Score {
 	private int valObjectsBroken; // the total value of broken objects measured in dollars
 	private int objectsBroken; // the number of broken objects
 	private int catsCorralled; // the number of cats captured
+	
+	PApplet parent;
 
     // ------------------------------------------------------------------------------------
 
-	public Score() {
+	public Score(PApplet p) {
 		valObjectsBroken = 0;
 		objectsBroken = 0;
 		catsCorralled = 0;
+		parent = p;
 	}
 
     // ------------------------------------------------------------------------------------
     
     public void display() {
-        pushMatrix();
-            fill(255, 128);
-            rect(0, 0, 100, 50, 12, 12, 12, 12);
-            fill(50);
+        parent.pushMatrix();
+            parent.fill(255, 128);
+            parent.rect(0, 0, 100, 50, 12, 12, 12, 12);
+            parent.fill(50);
             if (0 <= getCatValue() + getObjectsValue()) {
-                text("$" + (getCatValue() + getObjectsValue()) + ".00", 10, 30);
+                parent.text("$" + (getCatValue() + getObjectsValue()) + ".00", 10, 30);
             }
             else {
-                  text("-$" + abs(getCatValue() + getObjectsValue()) + ".00", 10, 30);
+                  parent.text("-$" + PApplet.abs(getCatValue() + getObjectsValue()) + ".00", 10, 30);
             }
-        popMatrix();
-        resetMatrix();
+        parent.popMatrix();
+        parent.resetMatrix();
     }
 	
 	/**
