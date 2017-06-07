@@ -1,7 +1,6 @@
 import ddf.minim.*;
 
 private World world;
-private Minim minim;
 
 PImage catImg;
 PImage bgImg;
@@ -11,7 +10,7 @@ PImage scoreZoneImg;
 Player player;
 
 public void setup(){
-	minim = new Minim(this);
+	Minim minim = new Minim(this);
 	LevelBuilder levelBuilder = new LevelBuilder();
 	
 	// load images

@@ -112,7 +112,7 @@ public class TabbyCat extends Actor {
 			}//close if moving
 		}//close if changing move state
 		
-		if(moving && (int)(parent.random(CDC)) == 0){
+		if(moving && ((int)(parent.random(CDC)) == 0)){
 				changeDir();
 		}//close if moving
 	}//close timing if
