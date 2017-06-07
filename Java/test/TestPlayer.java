@@ -11,7 +11,7 @@ import game.*;
 
 public class TestPlayer {
 	
-   private static game.CAT cat;
+   private game.CAT cat;
 	
    Player player;
    
