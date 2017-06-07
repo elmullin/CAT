@@ -12,7 +12,7 @@ import game.*;
 
 public class TestWorldLoop {
 	
-	private static game.CAT cat;
+	private game.CAT cat;
 	
 	@Before
 	public void setup(){
