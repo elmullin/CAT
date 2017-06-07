@@ -13,7 +13,7 @@ public class TestUpdateDeletionList {
         world = new World(null, null, null);
         List<Actor> actorList;
         for (int i = 0; i < n; i++) {
-            world.addActors(new BreakableObject(i * 10, null, i * 10, i * 10, 1);
+            world.addActors(new BreakableObject(i * 10, null, i * 10, i * 10, 1));
         }
         
         actorList = world.getActors();
