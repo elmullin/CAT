@@ -5,6 +5,7 @@
 package test;
 
 import org.junit.*;
+import game.*;
 
 public class TestPlayerKeyReleased {
    Player player;
@@ -23,9 +24,6 @@ public class TestPlayerKeyReleased {
       int[] keysPressed = player.releaseKey('w');
       
       assertEquals(0, keysPressed[0]);
-      assertEquals(-1, keysPressed[1]);
-      assertEquals(1, keysPressed[2]);
-      assertEquals(1, keysPressed[3]);
    }
    
    @Test
@@ -34,9 +32,6 @@ public class TestPlayerKeyReleased {
       player.releaseKey('a');
       int[] keysPressed = player.releaseKey('s');
       
-      assertEquals(-1, keysPressed[0]);
-      assertEquals(0, keysPressed[1]);
       assertEquals(0, keysPressed[2]);
-      assertEquals(1, keysPressed[3]);
    }
 }
