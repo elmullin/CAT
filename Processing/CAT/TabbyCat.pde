@@ -15,7 +15,7 @@ public class TabbyCat extends Actor {
 
 	private static final int CATSPEED = 4; //speed of cats movement per 
 	private static final int FLEERAD = 100;
-	private static final int CMC = 10; //1 in X chance each second for moving state to change
+	private static final int CMC = 5; //1 in X chance each second for moving state to change
 	private static final int CDC = 5; //in in X chance each second to change direction while moving
 
 	/*
@@ -31,7 +31,7 @@ public class TabbyCat extends Actor {
 	// -------------------------------------------------------------------------
 
 	public TabbyCat(PImage image, float x, float y, Minim minim){
-		super(image, x, y, 0, 0, 12, true);
+		super(image, x, y, 12, true);
 		catSounds = new Music(minim, SOUND_1);
 		startTime = millis();
 		waitTime = random(5000) + 10000;

@@ -14,20 +14,14 @@ public class Actor extends PhysObject{
 	// -- constructors --
 
 	// make actor in position with sprite
-	public Actor(PImage sprite, float posX, float posY, float velX, float velY, 
-	float radius, boolean moveable) {
-		super(posX, posY, velX, velY, radius, moveable);
-		this.sprite = sprite;
-		deletionMark = false;
-	}
-
 	public Actor(PImage sprite, float posX, float posY, float radius, boolean moveable) {
-		this(sprite, posX, posY, 0, 0, radius, moveable);
+		super(posX, posY, 0, 0, radius, moveable);
+      this.sprite = sprite;
 		deletionMark = false;
 	}
 
 	public Actor(PImage sprite, float posX, float posY) {
-		this(sprite, posX, posY, 0, 0, 0, false);
+		this(sprite, posX, posY, 0, false);
 		deletionMark = false;
 	}
 	

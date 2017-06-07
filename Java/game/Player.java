@@ -24,7 +24,7 @@ public class Player extends Actor {
 	 * Constructor. Creates a new object at the given location.
 	 */
 	public Player(PImage sprite, int posX, int posY, PApplet p) {
-		super(sprite, posX, posY, 0, 0, 32, true, p);
+		super(sprite, posX, posY, 32, true, p);
 		mouseVector = new PVector(0, 0);
 		keysPressed = new int[4]; // holds pressed or not pressed state of W, A, S, D, respectively
 		parent = p;
