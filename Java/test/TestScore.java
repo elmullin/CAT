@@ -1,3 +1,5 @@
+// William Elliott //
+
 package test;
 
 import static org.junit.Assert.*;
@@ -10,7 +12,7 @@ import game.Score;
 public class TestScore {
 	Score score;
 	
-	private static game.CAT cat;
+	private game.CAT cat;
 	
 	@Before
 	public void setup(){
@@ -18,7 +20,7 @@ public class TestScore {
 	}
 	
 	@Test
-	public void TestIncrementObjectsBroken(){
+	public void testIncrementObjectsBroken(){
 		score = new Score(cat);
 		score.incrementObjectsBroken(5);
 		
@@ -27,7 +29,7 @@ public class TestScore {
 	}//close TestIncrementObjectsBroken
 	
 	@Test
-	public void TestIncrementCatsCoralled(){
+	public void testIncrementCatsCoralled(){
 		score = new Score(cat);
 		score.incrementCatsCorralled();
 		
