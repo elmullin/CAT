@@ -1,6 +1,8 @@
 package test;
 
-import java.util.List;
+import static org.junit.Assert.*;
+
+import java.util.*;
 import org.junit.*;
 import game.*;
 
