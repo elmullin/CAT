@@ -62,15 +62,13 @@ public class TestPhysObject {
 		world.addActor(a);
       a.pressKey('w');
 
-      world.addWall(new Wall(-100, -1, 100, -20, cat));
-		
 		world.addActor(new TabbyCat(null, -1, 0, null, cat));
 
       world.addActor(new BreakableObject(400, null, 0, 1, 0, cat));
 		
 		a.move();
 		
-		assertEquals(0, a.getPosition().y, 0.001);
+		assertEquals(-1, a.getPosition().y, 0.001);
 	} 
 
    @Test
@@ -80,9 +78,6 @@ public class TestPhysObject {
 		world.addActor(a);
       a.pressKey('w');
 
-      world.addWall(new Wall(-100, -1, 100, -20, cat));
-      world.addWall(new Wall(-100, 1, 100, 20, cat));
-		
 		world.addActor(new TabbyCat(null, -1, 0, null, cat));
       world.addActor(new TabbyCat(null, 1, 0, null, cat));
 
@@ -91,21 +86,17 @@ public class TestPhysObject {
 		
 		a.move();
 		
-		assertEquals(0, a.getPosition().y, 0.001);
+		assertEquals(-1, a.getPosition().y, 0.001);
 
    }
 
    @Test
-   public void testMove10(){ // tests the three loops in move a typical number of times
+   public void testMove10(){ // tests two of the three loops in move a typical number of times
 		World world = new World(cat);
 		Player a = new Player(null, 0, 0, cat);
 		world.addActor(a);
       a.pressKey('w');
 
-      for (int i = 0; i < 10; i++) {
-         world.addWall(new Wall(-100, -1 + -20 * i, 100, -21 + -20 * i, cat));
-      }
-		
       for (int i = 0; i < 10; i++) {
 		   world.addActor(new TabbyCat(null, -1 * i, 0, null, cat));
       }
@@ -116,6 +107,6 @@ public class TestPhysObject {
 		
 		a.move();
 		
-		assertEquals(0, a.getPosition().y, 0.001);
+		assertEquals(-1, a.getPosition().y, 0.001);
    }
 }
