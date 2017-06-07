@@ -3,17 +3,17 @@ package game;
 import processing.core.*;
 import ddf.minim.*;
 
-private World world;
-private Minim minim;
-
-PImage catImg;
-PImage bgImg;
-PImage playerImg;
-PImage scoreZoneImg;
-
-Player player;
-
 public class CAT extends PApplet{
+	
+	private World world;
+	private Minim minim;
+
+	PImage catImg;
+	PImage bgImg;
+	PImage playerImg;
+	PImage scoreZoneImg;
+
+	Player player;
 	
 	public static void main(String[] args){
 		PApplet.main("CAT");
@@ -29,7 +29,7 @@ public class CAT extends PApplet{
 		playerImg = loadImage("/assets/player.gif");
 		scoreZoneImg = loadImage("/assets/scorezone.png");
 		
-		world = levelBuilder.buildWorld(minim, bgImg, playerImg, catImg, scoreZoneImg);
+		world = levelBuilder.buildWorld(minim, bgImg, playerImg, catImg, scoreZoneImg, this);
 		player = (Player)(world.getActors(Player.class).get(0));
 	}
 	

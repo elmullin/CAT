@@ -2,7 +2,6 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
-import processing.core.*;
 import ddf.minim.*;
 
 public class World {
@@ -13,13 +12,13 @@ public class World {
 	// -- variables --
 	
 	Player player;
-	private ArrayList<Actor> actors = new ArrayList();
-	private ArrayList<Wall> walls = new ArrayList();
+	private ArrayList<Actor> actors = new ArrayList<>();
+	private ArrayList<Wall> walls = new ArrayList<>();
    private Button pauseButton;
-	private List<Actor> deletionList = new ArrayList();
+	private List<Actor> deletionList = new ArrayList<>();
 	private Background background;
 	private Music music;
-	private Score score;
+	public Score score;
 	
 	// -- constructors --
 	
@@ -88,7 +87,7 @@ public class World {
 	
 	// return an array of actors matching a given class
 	public <T extends Actor> List<Actor> getActors(Class<T> subclass) {
-		ArrayList<Actor> filtered = new ArrayList();
+		ArrayList<Actor> filtered = new ArrayList<>();
 		for (Actor actor : actors) {
 			if (actor.getClass().equals(subclass)) {
 				filtered.add(actor);
