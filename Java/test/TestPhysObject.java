@@ -52,7 +52,7 @@ public class TestPhysObject {
       a.pressKey('w');
 
       a.move();
-      assertEquals(-1, a.getPosition().y, .001);
+      assertEquals(-2, a.getPosition().y, .001);
    }
 
 	@Test
@@ -68,7 +68,7 @@ public class TestPhysObject {
 		
 		a.move();
 		
-		assertEquals(-1, a.getPosition().y, 0.001);
+		assertEquals(-2, a.getPosition().y, 0.001);
 	} 
 
    @Test
@@ -86,7 +86,7 @@ public class TestPhysObject {
 		
 		a.move();
 		
-		assertEquals(-1, a.getPosition().y, 0.001);
+		assertEquals(-2, a.getPosition().y, 0.001);
 
    }
 
@@ -97,16 +97,16 @@ public class TestPhysObject {
 		world.addActor(a);
       a.pressKey('w');
 
-      for (int i = 0; i < 10; i++) {
+      for (int i = 1; i < 10; i++) {
 		   world.addActor(new TabbyCat(null, -100 * i, 0, null, cat));
       }
 
-      for (int i = 0; i < 10; i++) {
+      for (int i = 1; i < 10; i++) {
          world.addActor(new BreakableObject(400, null, 100 * i, 0, 0, cat));
       }
 		
 		a.move();
 		
-		assertEquals(-1, a.getPosition().y, 0.001);
+		assertEquals(-2, a.getPosition().y, 0.001);
    }
 }
