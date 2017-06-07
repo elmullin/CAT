@@ -6,9 +6,6 @@ public class Actor extends PhysObject{
 	
 	// -- variables --
 	
-	// world actor belongs to
-	private World world;
-	
 	// sprite of actor
 	protected PImage sprite;
 
@@ -60,19 +57,9 @@ public class Actor extends PhysObject{
 		scaleImage((int) Math.round(factor * parent.width), (int) Math.round(factor * parent.height));
 	}
 	
-	// returns world of this actors as a World
-	public World getWorld() {
-		return this.world;
-	}
-	
-	// sets the world this actor is in
-	public void setWorld(World world) {
-		this.world = world;
-	}
-	
 	// removes actor from world
 	public void remove() {
-		world = null;
+		setWorld(null);
 		getWorld().removeActor(this);
 	}
 	

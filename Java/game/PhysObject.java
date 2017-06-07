@@ -12,6 +12,9 @@ public abstract class PhysObject{
 	// the collision radius
 	float radius;
 	
+	// world actor belongs to
+	private World world;
+	
 	boolean moveable;
 	
 	// PApplet reference
@@ -182,5 +185,15 @@ public abstract class PhysObject{
 				&& (wall.left < myRight)
 				&& (myTop < wall.bottom)
 				&& (wall.top < myBottom);
+	}
+	
+	// returns world of this actors as a World
+	public World getWorld() {
+		return this.world;
+	}
+	
+	// sets the world this actor is in
+	public void setWorld(World world) {
+		this.world = world;
 	}
 }
