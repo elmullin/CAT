@@ -15,7 +15,7 @@ public class TestButton {
 	private static game.CAT cat;
 	
 	@Before
-	public void setup(){
+	public static void setup(){
 		cat = new game.CAT();
 	}
 
