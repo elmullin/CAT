@@ -4,14 +4,21 @@
 
 package test;
 
+import static org.junit.Assert.*;
+
 import org.junit.*;
 import game.*;
 
-public class TestPlayerKeyReleased {
+public class TestPlayer {
+	
+   private static game.CAT cat;
+	
    Player player;
    
+   @Before
    public void setup() {
-      player = new Player(null, 0, 0);
+	  cat = new game.CAT();
+      player = new Player(null, 0, 0, cat);
       player.pressKey('w');
       player.pressKey('a');
       player.pressKey('s');
