@@ -38,7 +38,9 @@ public class TabbyCat extends Actor {
 	public TabbyCat(PImage image, float x, float y, Minim minim, PApplet p){
 		super(image, x, y, 12, true, p);
 		parent = p;
-		catSounds = new Music(minim, SOUND_1);
+      if (minim != null) {
+   		catSounds = new Music(minim, SOUND_1);
+      }
 		startTime = parent.millis();
 		waitTime = parent.random(5000) + 10000;
 	}
