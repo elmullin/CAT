@@ -30,14 +30,17 @@ public class TabbyCat extends Actor {
 
 	private boolean moving = false;
 	private int lastSec = 0;
+	
+	PApplet parent;
 
 	// -------------------------------------------------------------------------
 
-	public TabbyCat(PImage image, float x, float y, Minim minim){
-		super(image, x, y, 12, true);
+	public TabbyCat(PImage image, float x, float y, Minim minim, PApplet p){
+		super(image, x, y, 12, true, p);
+		parent = p;
 		catSounds = new Music(minim, SOUND_1);
-		startTime = millis();
-		waitTime = random(5000) + 10000;
+		startTime = parent.millis();
+		waitTime = parent.random(5000) + 10000;
 	}
 
 	// -------------------------------------------------------------------------
@@ -45,12 +48,12 @@ public class TabbyCat extends Actor {
     @Override
     public void move() { // like physObject move, but also check for ScoreZone
         super.move();
-        collide(world.getActors(ScoreZone.class).get(0));
+        collide(getWorld().getActors(ScoreZone.class).get(0));
     }
 
 	private void makeNoise() {
-		if (millis() >= startTime + waitTime) {
-			switch ((int)random(8) + 1) {
+		if (parent.millis() >= startTime + waitTime) {
+			switch ((int)parent.random(8) + 1) {
 			case 1:
 				catSounds.switchTrack(SOUND_1, false);
 				break;
@@ -76,14 +79,14 @@ public class TabbyCat extends Actor {
 				catSounds.switchTrack(SOUND_8, false);
 				break;
 			}
-			startTime = millis();
-			waitTime = random(5000) + 11000;
+			startTime = parent.millis();
+			waitTime = parent.random(5000) + 11000;
 		}
 	}
 
 	public void flee(){
 		moving = true;
-		velocity = PVector.sub(position, world.player.position);
+		velocity = PVector.sub(position, getWorld().player.position);
 		velocity.normalize().mult(CATSPEED);
 	}
 
@@ -93,12 +96,12 @@ public class TabbyCat extends Actor {
 	}//close changeDir
 
 	public void alone(){
-	int curSec = second();
+	int curSec = PApplet.second();
 
 	if(curSec != lastSec){
 		lastSec = curSec;
 		
-		if(int(random(CMC)) == 0){
+		if((int)(parent.random(CMC)) == 0){
 			moving = !moving;
 			if(moving){
 				changeDir();
@@ -106,7 +109,7 @@ public class TabbyCat extends Actor {
 		}//close if changing move state
 		
 		if(moving){
-			if(int(random(CDC)) == 0){
+			if((int)(parent.random(CDC)) == 0){
 				changeDir();
 			}//close if changing direction
 		}//close if moving
@@ -115,7 +118,7 @@ public class TabbyCat extends Actor {
 	}//close pathing
 
 	public void pathing(){
-		if(dist(getWorld().player.position.x, getWorld().player.position.y, position.x, position.y) <= FLEERAD){
+		if(PApplet.dist(getWorld().player.position.x, getWorld().player.position.y, position.x, position.y) <= FLEERAD){
 			flee();
 		}else{
 			alone();
@@ -123,7 +126,7 @@ public class TabbyCat extends Actor {
 	}
 
 	public void scoreCat() {
-		world.getScore().incrementCatsCorralled();
+		getWorld().getScore().incrementCatsCorralled();
 		markDelete();
 	}
 	

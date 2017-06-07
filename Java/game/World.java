@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import processing.core.*;
 import java.util.List;
 import ddf.minim.*;
 
@@ -20,12 +21,15 @@ public class World {
 	private Music music;
 	private Score score;
 	
+	PApplet parent;
+	
 	// -- constructors --
 	
 	// make world with background and default dimensions
-	public World(Background background, Minim minim, Player player) {
+	public World(Background background, Minim minim, Player player, PApplet p) {
 		this.background = background;
 		this.player = player;
+		parent = p;
 		
         if (music == null) {
             music = new Music(minim, LEVEL_MUSIC);
@@ -33,7 +37,7 @@ public class World {
         }
         
 		this.player = player;
-		score = new Score();
+		score = new Score(parent);
 	}
 	
 	// -- methods --

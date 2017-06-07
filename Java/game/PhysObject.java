@@ -48,13 +48,13 @@ public abstract class PhysObject{
 		if(velocity.mag() != 0){
 			position.add(velocity);
 			
-			for(Actor a : world.getActors(TabbyCat.class)){
+			for(Actor a : getWorld().getActors(TabbyCat.class)){
 				collide(a);
 			}
-			for (Actor a : world.getActors(BreakableObject.class)) {
+			for (Actor a : getWorld().getActors(BreakableObject.class)) {
 				collide((BreakableObject)a);
 			}
-			for(Wall w : world.getWalls()){
+			for(Wall w : getWorld().getWalls()){
 				collide(w);
 			}
 		}
