@@ -6,20 +6,22 @@ import java.util.*;
 import org.junit.*;
 import game.*;
 
-public class TestUpdateDeletionList {
+public class TestWorld {
+	private game.CAT cat;
     World world;
+    int n;
     
-    public List<Actor> setup(int n) {
-        world = new World(null, null, null);
+    public List<Actor> setup() {
+        world = new World(null, null, null, cat);
         List<Actor> actorList;
         for (int i = 0; i < n; i++) {
-            world.addActors(new BreakableObject(i * 10, null, i * 10, i * 10, 1));
+            world.addActor(new Actor(null, i * 10, i * 10, cat));
         }
         
         actorList = world.getActors();
         
         for (int i = 0; i < actorList.size(); i++) {
-           markDeletion(actorList.get(i));
+           world.markDeletion(actorList.get(i));
         }
         
         return world.updateDeletionList();
@@ -27,25 +29,29 @@ public class TestUpdateDeletionList {
     
     @Test
     public void test0Actors() { // loop body not executed at all
-       LinkedList<Actor> deletionList = setup(0);
+       n = 0;
+       List<Actor> deletionList = setup();
        assertEquals(0, deletionList.size());
     }
     
     @Test
     public void test1Actors() { // loop body executed exactly once
-       LinkedList<Actor> deletionList = setup(1);
+       n = 1;
+       List<Actor> deletionList = setup();
        assertEquals(0, deletionList.size());
     }
     
     @Test
     public void test2Actors() { // loop body executed exactly twice
-       LinkedList<Actor> deletionList = setup(2);
+       n = 2;
+       List<Actor> deletionList = setup();
        assertEquals(0, deletionList.size());
     }
     
     @Test
     public void test10Actors() { // loop body executed a typical number of times
-        LinkedList<Actor> deletionList = setup(10);
+    	n = 10;
+        List<Actor> deletionList = setup();
         assertEquals(0, deletionList.size());
     }
 }

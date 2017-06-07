@@ -31,7 +31,7 @@ public class World {
 		this.player = player;
 		parent = p;
 		
-        if (music == null) {
+        if (minim != null) {
             music = new Music(minim, LEVEL_MUSIC);
 		    music.switchTrack(LEVEL_MUSIC, true);
         }
